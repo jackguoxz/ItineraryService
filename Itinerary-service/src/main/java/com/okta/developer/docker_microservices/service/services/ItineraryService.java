@@ -7,4 +7,5 @@ import java.util.List;
 public interface ItineraryService {
     List<ItineraryDto> listClasses();
     List<String> getShortestItineraryByTime(int id);
+    List<String> getShortestItineraryByConnection(int id);
 }

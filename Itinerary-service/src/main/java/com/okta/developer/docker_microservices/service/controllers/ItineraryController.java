@@ -36,8 +36,11 @@ public class ItineraryController {
 
     @GetMapping(path = "str")
     public List<String> listClassesByCityId(){
-        return itineraryService.getShortestItineraryByTime(1);
+       // return itineraryService.getShortestItineraryByTime(1);
+        return itineraryService.getShortestItineraryByConnection(1);
     }
+
+
 
 
 
