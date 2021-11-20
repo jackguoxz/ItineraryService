@@ -4,10 +4,14 @@ package com.okta.developer.docker_microservices.service.controllers;
 import com.okta.developer.docker_microservices.service.dtos.ItineraryDto;
 import com.okta.developer.docker_microservices.service.services.ItineraryService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 //@RestController("/class")
 @RestController
@@ -35,9 +39,21 @@ public class ItineraryController {
     */
 
     @GetMapping(path = "str")
-    public List<String> listClassesByCityId(){
+    public List<String> listClassesByCityId(@RequestHeader Map<String, String> headers){
+        headers.forEach((key, value) -> {
+            System.out.println(String.format("Header '%s' = %s", key, value));
+        });
+
+        List<String> result=new ArrayList<>();
+        if(!headers.get("username").equals("user")||!headers.get("password").equals("123456")) {
+
+                return result;
+        }
+
+        int cityId=Integer.parseInt(headers.get("id"));
+        System.out.println("cityid is " +cityId);
        // return itineraryService.getShortestItineraryByTime(1);
-        return itineraryService.getShortestItineraryByConnection(1);
+        return itineraryService.getShortestItineraryByConnection(cityId);
     }
 
 

@@ -2,15 +2,20 @@ package com.okta.developer.docker_microservices.ui.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.expression.Maps;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -32,8 +37,16 @@ public class ItineraryController {
 
     @GetMapping("/classes")
     public ResponseEntity<List<String>> listClasses(){
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("id", "1");
+        headers.set("username", "user");
+        headers.set("password", "123456");
+        HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<MultiValueMap<String, Object>>(null,headers);
+        //ResponseEntity<String> response2 = template.exchange(url, HttpMethod.GET, httpEntity, String.class,paramMap);
+
         return restTemplate
-                .exchange("http://"+ serviceHost +"/class/str", HttpMethod.GET, null,
+                .exchange("http://"+ serviceHost +"/class/str", HttpMethod.GET, httpEntity,
                         new ParameterizedTypeReference<List<String>>() {});
     }
 

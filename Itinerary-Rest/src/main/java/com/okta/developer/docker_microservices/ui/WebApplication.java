@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class UIWebApplication implements WebMvcConfigurer {
+public class WebApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UIWebApplication.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 
 
