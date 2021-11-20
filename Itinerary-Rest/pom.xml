@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.okta.developer.docker_microservices</groupId>
-	<artifactId>school-ui</artifactId>
+	<artifactId>ItineraryList</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>school-ui</name>
+	<name>ItineraryList</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

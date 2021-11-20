@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,8 +36,8 @@ public class ItineraryController {
     }
 
 
-    @GetMapping("/itinerarylist")
-    public ResponseEntity<List<String>> listClasses(){
+    @GetMapping("/itinerarylist/{id}")
+    public ResponseEntity<List<String>> listItinerary(@PathVariable String id){
 
         /*
         HttpHeaders headers = new HttpHeaders();
@@ -48,8 +49,11 @@ public class ItineraryController {
                 .exchange("http://"+ serviceHost +"/class/str", HttpMethod.GET, httpEntity,
                         new ParameterizedTypeReference<List<String>>() {});
                         */
+        System.out.println(id);
+        String url="http://"+ serviceHost +"/itinerarylist/add/zhangsan/12345/"+id;
+        System.out.println(url);
         return restTemplate
-                .exchange("http://"+ serviceHost +"/itinerarylist/add/zhangsan/12345/1", HttpMethod.GET, null,
+                .exchange(url, HttpMethod.GET, null,
                         new ParameterizedTypeReference<List<String>>() {});
 
     }
