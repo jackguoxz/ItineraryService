@@ -35,19 +35,23 @@ public class ItineraryController {
     }
 
 
-    @GetMapping("/classes")
+    @GetMapping("/itinerarylist")
     public ResponseEntity<List<String>> listClasses(){
 
+        /*
         HttpHeaders headers = new HttpHeaders();
         headers.set("id", "1");
         headers.set("username", "user");
         headers.set("password", "123456");
         HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<MultiValueMap<String, Object>>(null,headers);
-        //ResponseEntity<String> response2 = template.exchange(url, HttpMethod.GET, httpEntity, String.class,paramMap);
-
         return restTemplate
                 .exchange("http://"+ serviceHost +"/class/str", HttpMethod.GET, httpEntity,
                         new ParameterizedTypeReference<List<String>>() {});
+                        */
+        return restTemplate
+                .exchange("http://"+ serviceHost +"/itinerarylist/add/zhangsan/12345/1", HttpMethod.GET, null,
+                        new ParameterizedTypeReference<List<String>>() {});
+
     }
 
 }
