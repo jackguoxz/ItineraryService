@@ -23,12 +23,6 @@ public class DataFillerService {
     @Transactional
     public void fillData(){
 
-
-       // Itinerary itinerary1=new Itinerary(1,3,"12","22");
-        //itineraryDAO.save(new Itinerary());
-
-        // classes
-
         itineraryDAO.save(new Itinerary(0,1,"10", "13"));
         itineraryDAO.save(new Itinerary(1,0,"10", "18"));
         itineraryDAO.save(new Itinerary(2,0,"10", "15"));

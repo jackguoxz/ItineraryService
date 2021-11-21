@@ -156,8 +156,6 @@ public class ItineraryServiceDB implements ItineraryService {
                         .destinationCityId(classObj.getDestinationCityId())
                         .departureTimeName(classObj.getDepartureTime())
                         .arrivalTimeName(classObj.getArrivalTime())
-                      //  .departureTimeName(classObj.getDepartureTime())
-                        //.arrivalTimeName(classObj.getArrivalTime())
                         .build()
                 )
                 .collect(Collectors.toList());
