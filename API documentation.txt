@@ -5,7 +5,8 @@ API Description: Given an origin city will return a list of itineraries, one bas
 http://localhost/itinerary/listitinerary/{cityid}
 ---------------------------------------
 Parameters
-id  required   "the id of the departure city"
+Name Required/Optional  Type         Description 
+id   required           int         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
@@ -23,7 +24,8 @@ API Description: Given an origin city will return a list of itineraries, based i
 http://localhost/itinerary/listitinerary/{cityid}
 ---------------------------------------
 Parameters
-id  required   "the id of the departure city"
+Name Required/Optional  Type         Description 
+id   required           int         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
@@ -43,7 +45,8 @@ http://localhost/itinerary/listitinerary/{cityid}
 
 ---------------------------------------
 Parameters
-id  required   "the id of the departure city"
+Name Required/Optional  Type         Description 
+id   required           int         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
