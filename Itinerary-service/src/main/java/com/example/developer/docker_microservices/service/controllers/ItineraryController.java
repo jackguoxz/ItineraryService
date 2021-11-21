@@ -16,7 +16,7 @@ public class ItineraryController {
         this.itineraryService = itineraryService;
     }
 
-    @RequestMapping(value = "/add/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/get/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItinerary(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
         List<String> result = new ArrayList<>();

@@ -38,7 +38,7 @@ public class ItineraryController {
 
     @GetMapping("/itinerarylist/{id}")
     public ResponseEntity<List<String>> listItinerary(@PathVariable String id){
-        String url="http://"+ serviceHost +"/itinerarylist/add/zhangsan/12345/"+id;
+        String url="http://"+ serviceHost +"/itinerarylist/get/zhangsan/12345/"+id;
         System.out.println(url);
         return restTemplate
                 .exchange(url, HttpMethod.GET, null,
