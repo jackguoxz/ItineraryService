@@ -27,6 +27,9 @@ curl http://localhost:8088/itinerary/getshortestitinerarybyconnection/user/passw
 curl http://localhost:8088/itinerary/getshortestitinerarybytime/user/password/2
 ["[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
 
+curl http://localhost:8088/itinerary/listitinerary/bymap/user/password/2
+{"connection":["[2, 0, 1]","[2, 0]","[2, 3]"],"time":["[2, 0, 1]","[2, 0]","[2, 3]"]}
+
 2: The technology stack used in this project
 ============================================
 Spring Boot is used to build a microservice. The reason to use Spring Boot is: Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
