@@ -1,6 +1,6 @@
 API call
 
-API Description: Given an origin city will return a list of itineraries, one based in the least number of connections and the second based in the least time. 
+API Description: Given an origin city will return a list of itineraries by List, one based in the least number of connections and the second based in the least time. 
 ---------------------------------------
 http://localhost/itinerary/listitinerary/{cityid}
 ---------------------------------------
@@ -18,10 +18,27 @@ Sample response
 ["shortestItineraryByConnection","[1, 0]","[1, 0, 3]","[1, 2]","shortestItineraryByTime","[1, 2, 3, 0]","[1, 2, 3]","[1, 2]"]
 
 
+API Description: Given an origin city will return a list of itineraries by Map, one based in the least number of connections and the second based in the least time. 
+---------------------------------------
+http://localhost/itinerary/listitinerary/bymap/user/password/{cityid}
+---------------------------------------
+Parameters
+Name Required/Optional  Type         Description 
+id   required           int         "the id of the departure city"
+---------------------------------------
+Return type 
+Map<String,List<String>>
+-----------
+Examples of API calls:
+http://localhost:8088/itinerary/listitinerary/bymap/user/password/2
+---------------------------------------
+Sample response
+{"connection":["[2, 0, 1]","[2, 0]","[2, 3]"],"time":["[2, 0, 1]","[2, 0]","[2, 3]"]}
+
 
 API Description: Given an origin city will return a list of itineraries, based in the least number of connections 
 ---------------------------------------
-http://localhost/itinerary/listitinerary/{cityid}
+http://localhost/itinerary/getshortestitinerarybyconnection/user/password/{cityid}
 ---------------------------------------
 Parameters
 Name Required/Optional  Type         Description 
@@ -41,8 +58,7 @@ Sample response
 
 API Description: Given an origin city will return a list of itineraries, based in the least number of time 
 ---------------------------------------
-http://localhost/itinerary/listitinerary/{cityid}
-
+http://localhost/itinerary/getshortestitinerarybytime/user/password/{cityid}
 ---------------------------------------
 Parameters
 Name Required/Optional  Type         Description 
