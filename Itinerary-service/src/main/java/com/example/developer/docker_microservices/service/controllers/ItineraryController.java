@@ -16,6 +16,37 @@ public class ItineraryController {
         this.itineraryService = itineraryService;
     }
 
+
+    @RequestMapping(value = "/getShortestItineraryByConnection/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public List<String> getShortestItineraryByConnection(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
+        List<String> result = new ArrayList<>();
+        if(!name.equals("user")||!pwd.equals("password")) {
+            return result;
+        }
+        int cityId=Integer.parseInt(id);
+        List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnection(cityId);
+        for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
+            result.add(shortestItineraryByConnection.get(i));
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/getShortestItineraryByTime/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public List<String> getShortestItineraryByTime(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
+        List<String> result = new ArrayList<>();
+        if(!name.equals("user")||!pwd.equals("password")) {
+            return result;
+        }
+        int cityId=Integer.parseInt(id);
+        List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTime(cityId);
+        for (int i = 0; i < shortestItineraryByTime.size(); i++) {
+            result.add(shortestItineraryByTime.get(i));
+        }
+        return result;
+    }
+
     @RequestMapping(value = "/listitinerary/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItinerary(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
