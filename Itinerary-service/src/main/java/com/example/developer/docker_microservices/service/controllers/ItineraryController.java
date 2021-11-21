@@ -17,7 +17,7 @@ public class ItineraryController {
     }
 
 
-    @RequestMapping(value = "/getShortestItineraryByConnection/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/getshortestitinerarybyconnection/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItineraryByConnection(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
         List<String> result = new ArrayList<>();
@@ -32,7 +32,7 @@ public class ItineraryController {
         return result;
     }
 
-    @RequestMapping(value = "/getShortestItineraryByTime/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/getshortestitinerarybytime/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItineraryByTime(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
         List<String> result = new ArrayList<>();
