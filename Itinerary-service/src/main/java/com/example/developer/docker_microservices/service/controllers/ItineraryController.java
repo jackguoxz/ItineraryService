@@ -4,7 +4,9 @@ package com.example.developer.docker_microservices.service.controllers;
 import com.example.developer.docker_microservices.service.services.ItineraryService;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -66,7 +68,20 @@ public class ItineraryController {
             result.add(shortestItineraryByTime.get(i));
         }
         return result;
-
     }
 
+    @RequestMapping(value = "/listitinerary/bymap/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public Map<String,List<String>> getShortestItineraryByMap(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
+        Map<String,List<String>> map =new HashMap();
+        if(!name.equals("user")||!pwd.equals("password")) {
+            return map;
+        }
+        int cityId=Integer.parseInt(id);
+        List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnection(cityId);
+        List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTime(cityId);
+        map.put("connection",shortestItineraryByConnection);
+        map.put("time",shortestItineraryByConnection);
+        return map;
+    }
 }
