@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/itinerarylist")
+@RequestMapping("/itinerary")
 public class ItineraryController {
     private final ItineraryService itineraryService;
 
@@ -16,11 +16,11 @@ public class ItineraryController {
         this.itineraryService = itineraryService;
     }
 
-    @RequestMapping(value = "/get/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/listitinerary/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItinerary(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
         List<String> result = new ArrayList<>();
-        if(!name.equals("zhangsan")||!pwd.equals("12345")) {
+        if(!name.equals("user")||!pwd.equals("password")) {
             return result;
         }
         int cityId=Integer.parseInt(id);
