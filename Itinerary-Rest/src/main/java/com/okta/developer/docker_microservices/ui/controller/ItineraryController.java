@@ -38,18 +38,6 @@ public class ItineraryController {
 
     @GetMapping("/itinerarylist/{id}")
     public ResponseEntity<List<String>> listItinerary(@PathVariable String id){
-
-        /*
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("id", "1");
-        headers.set("username", "user");
-        headers.set("password", "123456");
-        HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<MultiValueMap<String, Object>>(null,headers);
-        return restTemplate
-                .exchange("http://"+ serviceHost +"/class/str", HttpMethod.GET, httpEntity,
-                        new ParameterizedTypeReference<List<String>>() {});
-                        */
-        System.out.println(id);
         String url="http://"+ serviceHost +"/itinerarylist/add/zhangsan/12345/"+id;
         System.out.println(url);
         return restTemplate
