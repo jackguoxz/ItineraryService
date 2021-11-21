@@ -21,10 +21,10 @@ curl http://localhost:8080/itinerarylist/1
 curl http://localhost:8080/itinerarylist/2
 ["shortestItineraryByConnection","[2, 0, 1]","[2, 0]","[2, 3]","shortestItineraryByTime","[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
 
-curl http://localhost:8088/itinerary/getShortestItineraryByConnection/user/password/2
+curl http://localhost:8088/itinerary/getshortestitinerarybyconnection/user/password/2
 ["[2, 0, 1]","[2, 0]","[2, 3]"]
 
-curl http://localhost:8088/itinerary/getShortestItineraryByTime/user/password/2
+curl http://localhost:8088/itinerary/getshortestitinerarybytime/user/password/2
 ["[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
 
 2: The technology stack used in this project
