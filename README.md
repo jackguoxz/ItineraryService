@@ -34,4 +34,19 @@ Spring Boot is used to build a microservice. The reason to use Spring Boot is: S
 Floyd Warshall Algorithm is used to compute the Shortest way(in time and in connections ) to travel from one city to another in a graph.
 
 RestTemplate is used when the API in UI service(Itinerary-Rest) call API inbusiness service (Itinerary-Service).The RestTemplate is the central class within the Spring framework for executing synchronous HTTP requests on the client side.
+
+3: About the Floyd Warshall Algorithm
+============================================
+You could refer to this picture for the graph demo in this project:
+https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
+
+        itineraryDAO.save(new Itinerary(0,1,"10", "13"));
+        itineraryDAO.save(new Itinerary(1,0,"10", "18"));
+        itineraryDAO.save(new Itinerary(2,0,"10", "15"));
+        itineraryDAO.save(new Itinerary(0,3,"10", "17"));
+        itineraryDAO.save(new Itinerary(3,0,"10", "12"));
+        itineraryDAO.save(new Itinerary(1,2,"10", "12"));
+        itineraryDAO.save(new Itinerary(2,3,"10", "11"));
+
+    
  
