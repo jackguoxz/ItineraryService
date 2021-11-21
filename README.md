@@ -17,4 +17,14 @@ curl http://localhost:8080/itinerarylist/1
  
 curl http://localhost:8080/itinerarylist/2
 ["shortestItineraryByConnection","[2, 0, 1]","[2, 0]","[2, 3]","shortestItineraryByTime","[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
+
+
+
+The technolog stack used in this project:
+
+Spring Boot is used to build a microservice. The reason to use Spring Boot is: Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
+
+Floyd Warshall Algorithm is used to compute the Shortest way(in time and in connections ) to travel from one city to another in a graph.
+
+RestTemplate is used when the API in UI service(Itinerary-Rest) call API inbusiness service (Itinerary-Service).The RestTemplate is the central class within the Spring framework for executing synchronous HTTP requests on the client side.
  
