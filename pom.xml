@@ -11,7 +11,7 @@
 	<name>parent-project</name>
 
 	<modules>
-		<module>school-service</module>
-		<module>school-ui</module>
+		<module>itinerary-service</module>
+		<module>itinerarylist</module>
 	</modules>
 </project>
