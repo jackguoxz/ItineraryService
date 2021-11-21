@@ -27,4 +27,4 @@ Floyd Warshall Algorithm is used to compute the Shortest way(in time and in conn
  
 RestTemplate is used when the API in UI service(Itinerary-Rest) call API in business service (Itinerary-Service).The RestTemplate is the central class within the Spring framework for executing synchronous HTTP requests on the client side.
 
-JpaRepository is used to save the itnerary data. JpaRepository is a JPA specific extension of Repository. It contains the full API of CrudRepository and PagingAndSortingRepository. So it contains API for basic CRUD operations and also API for pagination and sorting.
+JpaRepository is used to save the itinerary data. JpaRepository is a JPA specific extension of Repository. It contains the full API of CrudRepository and PagingAndSortingRepository. So it contains API for basic CRUD operations and also API for pagination and sorting.
