@@ -19,7 +19,6 @@ public class ItineraryController {
     @RequestMapping(value = "/add/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItinerary(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
-        System.out.println("name:" + name + ",pwd:" + pwd);
         List<String> result = new ArrayList<>();
         if(!name.equals("zhangsan")||!pwd.equals("12345")) {
             return result;
