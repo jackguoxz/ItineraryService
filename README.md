@@ -54,10 +54,10 @@ https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
 4: To be enhanced in the future
 ============================================
 
-- Basic authentication is used for the API security, we should consider use HTTPS or OAuth. 
-- RestTemplate is used for executing HTTP request from client to server, the server's address need to be hard coded, it is essential to have a tool that helps the services to discover their counterparts. We should consider use Eureka from Netflix as it has outstanding Spring support.
+- Basic authentication is used for the API security(hard coding), we should consider use HTTPS or OAuth. 
+- RestTemplate is used for executing HTTP request from client to server, the server's address is hard coding, it is essential to have a tool that helps the services to discover their counterparts. We should consider use Eureka from Netflix as it has outstanding Spring support.
 - Circuit Breaker and Service Downgrade is not implemented yet, we should consider use Hystrix,  Hystrix is a library from Netflix,it isolates the points of access between the services, stops cascading failures across them and provides the fallback options.
-- Logging/Metrics, Dashboard and Alarm should be added
+- Logging/Metrics, Dashboard and Alarm should be added.
 
     
  
