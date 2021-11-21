@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 @Service
 public class DataFillerService {
-
     private final ItineraryDao itineraryDAO;
 
     public DataFillerService(ItineraryDao itineraryDAO) {
@@ -18,11 +17,9 @@ public class DataFillerService {
 
     }
 
-
     @PostConstruct
     @Transactional
     public void fillData(){
-
         itineraryDAO.save(new Itinerary(0,1,"10", "13"));
         itineraryDAO.save(new Itinerary(1,0,"10", "18"));
         itineraryDAO.save(new Itinerary(2,0,"10", "15"));

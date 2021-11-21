@@ -12,15 +12,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class ItineraryServiceDB implements ItineraryService {
-
     private final ItineraryDao itineraryDAO;
 
     @Autowired
     public ItineraryServiceDB(ItineraryDao itineraryDAO) {
         this.itineraryDAO = itineraryDAO;
     }
-
-
 
     @Override
     public List<String> getShortestItineraryByTime(int originalCityId)
@@ -66,7 +63,6 @@ public class ItineraryServiceDB implements ItineraryService {
         path=gfg.constructPath(originalCityId,destinationCityId);
         gfg.printPath(path);
         return path;
-
     }
 
     public Vector<Integer> getShortestItineraryByConnection(int [][]graph, int number,int originalCityId, int destinationCityId)
@@ -78,7 +74,6 @@ public class ItineraryServiceDB implements ItineraryService {
         path=gfg.constructPath(originalCityId,destinationCityId);
         gfg.printPath(path);
         return path;
-
     }
 
     public List<Integer> getDestinationCityList(List<ItineraryDto> itineraryDto)
@@ -94,8 +89,6 @@ public class ItineraryServiceDB implements ItineraryService {
             }
         }
         return destinationCityList;
-
-
     }
     public  int[][] getItineraryGraphByFlightTime(List<ItineraryDto> itineraryDto)
     {
@@ -123,7 +116,6 @@ public class ItineraryServiceDB implements ItineraryService {
             itineraryMap[originalCityId][destinationCityId]=flightTime;
         }
         return itineraryMap;
-
     }
 
     public  int[][] getItineraryGraphByFlightConnection(List<ItineraryDto> itineraryDto)

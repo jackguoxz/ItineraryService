@@ -10,8 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/itinerarylist")
 public class ItineraryController {
-
-
     private final ItineraryService itineraryService;
 
     public ItineraryController(ItineraryService itineraryService) {
@@ -24,7 +22,6 @@ public class ItineraryController {
         System.out.println("name:" + name + ",pwd:" + pwd);
         List<String> result = new ArrayList<>();
         if(!name.equals("zhangsan")||!pwd.equals("12345")) {
-
             return result;
         }
         int cityId=Integer.parseInt(id);
