@@ -12,9 +12,9 @@ With Itinerary-Service turned on, navigate to the Itinerary-Rest directory and s
 ./mvnw spring-boot:run
  
 Here are the examples:
-curl http://localhost:8080/itinerarylist/1
+curl http://localhost:8080/itinerary/listitinerary/1
 ["shortestItineraryByConnection","[1, 0]","[1, 0, 3]","[1, 2]","shortestItineraryByTime","[1, 2, 3, 0]","[1, 2, 3]","[1, 2]"]
-curl http://localhost:8080/itinerarylist/2
+curl http://localhost:8080/itinerary/listitinerary/2
 ["shortestItineraryByConnection","[2, 0, 1]","[2, 0]","[2, 3]","shortestItineraryByTime","[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
  
  
