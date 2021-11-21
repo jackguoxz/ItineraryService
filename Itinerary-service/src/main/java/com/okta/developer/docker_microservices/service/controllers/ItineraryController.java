@@ -1,16 +1,12 @@
 package com.okta.developer.docker_microservices.service.controllers;
 
 
-import com.okta.developer.docker_microservices.service.dtos.ItineraryDto;
 import com.okta.developer.docker_microservices.service.services.ItineraryService;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-//@RestController("/class")
+
 @RestController
 @RequestMapping("/itinerarylist")
 public class ItineraryController {
@@ -19,7 +15,6 @@ public class ItineraryController {
     private final ItineraryService itineraryService;
 
     public ItineraryController(ItineraryService itineraryService) {
-        //System.out.println(getById(id));
         this.itineraryService = itineraryService;
     }
 
@@ -35,7 +30,6 @@ public class ItineraryController {
         int cityId=Integer.parseInt(id);
         List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnection(cityId);
         List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTime(cityId);
-        //result.add()
         result.add("shortestItineraryByConnection");
         for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
             result.add(shortestItineraryByConnection.get(i));
