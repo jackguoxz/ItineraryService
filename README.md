@@ -60,6 +60,7 @@ https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
 - Logging/Metrics, Dashboard and Alarm should be added.
 
 5: How to Run each microservice in a different docker container linking them with any docker technology.
+============================================
 
 Add one line in this file Itinerary-Rest/src/main/resources/application.properties(https://github.com/jackguoxz/ItineraryService/tree/main/Itinerary-Rest/src/main/resources/application.properties) 
 service.host=banana:8088
