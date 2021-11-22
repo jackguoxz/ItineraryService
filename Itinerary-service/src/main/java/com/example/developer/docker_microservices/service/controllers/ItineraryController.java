@@ -57,6 +57,11 @@ public class ItineraryController {
             return result;
         }
         int cityId=Integer.parseInt(id);
+        if(cityId<0)
+        {
+            result.add("Invalid Departure CityId");
+            return result;
+        }
         List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnection(cityId);
         List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTime(cityId);
         result.add("shortestItineraryByConnection");
