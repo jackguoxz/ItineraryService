@@ -59,5 +59,16 @@ https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
 - Circuit Breaker and Service Downgrade is not implemented yet, we should consider use Hystrix,  Hystrix is a library from Netflix,it isolates the points of access between the services, stops cascading failures across them and provides the fallback options.
 - Logging/Metrics, Dashboard and Alarm should be added.
 
+5: How to Run each microservice in a different docker container linking them with any docker technology.
+
+Add one line in this file Itinerary-Rest/src/main/resources/application.properties(https://github.com/jackguoxz/ItineraryService/tree/main/Itinerary-Rest/src/main/resources/application.properties) 
+service.host=banana:8088
+
+Run below command:(springio/server is the image of Itinerary-Service, and springio/client is the image of Itinerary-Rest)
+docker network create mynetwork
+docker run --name apple -p 8080:8080 -d --network mynetwork springio/server
+docker run --name banana -p 8088:8088 -d --network mynetwork springio/client
+
+
     
  
