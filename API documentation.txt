@@ -6,7 +6,7 @@ http://localhost/itinerary/listitinerary/{cityid}
 ---------------------------------------
 Parameters
 Name Required/Optional  Type         Description 
-id   required           int         "the id of the departure city"
+id   required           String         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
@@ -24,7 +24,7 @@ http://localhost/itinerary/listitinerary/bymap/user/password/{cityid}
 ---------------------------------------
 Parameters
 Name Required/Optional  Type         Description 
-id   required           int         "the id of the departure city"
+id   required           String         "the id of the departure city"
 ---------------------------------------
 Return type 
 Map<String,List<String>>
@@ -42,7 +42,7 @@ http://localhost/itinerary/getshortestitinerarybyconnection/user/password/{cityi
 ---------------------------------------
 Parameters
 Name Required/Optional  Type         Description 
-id   required           int         "the id of the departure city"
+id   required           String         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
@@ -62,7 +62,7 @@ http://localhost/itinerary/getshortestitinerarybytime/user/password/{cityid}
 ---------------------------------------
 Parameters
 Name Required/Optional  Type         Description 
-id   required           int         "the id of the departure city"
+id   required           String         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
