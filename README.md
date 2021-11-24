@@ -23,7 +23,7 @@ curl 'http://localhost:8080/itinerary/listitinerary/1' -H 'auth_token: token'
 
 ["shortestItineraryByConnection","[1, 0]","[1, 0, 3]","[1, 2]","shortestItineraryByTime","[1, 2, 3, 0]","[1, 2, 3]","[1, 2]"]
  
-curl 'http://localhost:8080/itinerary/listitinerary/1' -H 'auth_token: token'
+curl 'http://localhost:8080/itinerary/listitinerary/2' -H 'auth_token: token'
 
 ["shortestItineraryByConnection","[2, 0, 1]","[2, 0]","[2, 3]","shortestItineraryByTime","[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
 
