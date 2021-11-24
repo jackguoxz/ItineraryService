@@ -1,5 +1,6 @@
 package com.example.developer.docker_microservices.ui.controller;
 
+import com.example.developer.docker_microservices.ui.auth.Auth;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -18,6 +19,7 @@ import org.thymeleaf.expression.Maps;
 import java.util.List;
 import java.util.Map;
 
+@Auth
 @Controller
 @RequestMapping("/")
 public class ItineraryController {
@@ -38,7 +40,7 @@ public class ItineraryController {
 
     @GetMapping("/itinerary/listitinerary/{id}")
     public ResponseEntity<List<String>> listItinerary(@PathVariable String id){
-        String url="http://"+ serviceHost +"/itinerary/listitinerary/user/password/"+id;
+        String url="http://"+ serviceHost +"/itinerary/listitinerary/"+id;
         return restTemplate
                 .exchange(url, HttpMethod.GET, null,
                         new ParameterizedTypeReference<List<String>>() {});

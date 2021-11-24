@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-
 @RestController
 @RequestMapping("/itinerary")
 public class ItineraryController {
@@ -67,13 +66,10 @@ public class ItineraryController {
         return result;
     }
 
-    @RequestMapping(value = "/listitinerary/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/listitinerary/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public List<String> getShortestItinerary(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
+    public List<String> getShortestItinerary(@PathVariable String id){
         List<String> result = new ArrayList<>();
-        if(!name.equals("user")||!pwd.equals("password")) {
-            return result;
-        }
         if(checkCityId(id))
         {
             result.add("Invalid Original City Id");
@@ -93,13 +89,10 @@ public class ItineraryController {
         return result;
     }
 
-    @RequestMapping(value = "/listitinerary/bymap/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/listitinerary/bymap/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public Map<String,List<String>> getShortestItineraryByMap(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
+    public Map<String,List<String>> getShortestItineraryByMap(@PathVariable String id){
         Map<String,List<String>> map =new HashMap();
-        if(!name.equals("user")||!pwd.equals("password")) {
-            return map;
-        }
         if(checkCityId(id)) {
             List<String> string=new ArrayList<>();
             string.add(id);
