@@ -37,7 +37,7 @@ curl http://localhost:8088/itinerary/getshortestitinerarybytime/user/password/2
 
 curl http://localhost:8088/itinerary/listitinerary/bymap/user/password/2
 
-{"connection":["[2, 0, 1]","[2, 0]","[2, 3]"],"time":["[2, 0, 1]","[2, 0]","[2, 3]"]}
+{"connection":["[2, 0, 1]","[2, 0]","[2, 3]"],"time":["[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]}
 
 2: The technology stack used in this project
 ============================================
