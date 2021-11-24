@@ -110,7 +110,7 @@ public class ItineraryController {
         List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnection(cityId);
         List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTime(cityId);
         map.put("connection",shortestItineraryByConnection);
-        map.put("time",shortestItineraryByConnection);
+        map.put("time",shortestItineraryByTime);
         return map;
     }
 }
