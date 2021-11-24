@@ -75,7 +75,6 @@ public class ItineraryServiceDB implements ItineraryService {
 
     public List<Integer> getDestinationCityList(List<ItineraryDto> itineraryDto)
     {
-        final int MAXN = 100;
         List<Integer> destinationCityList=new ArrayList<>();
         for (int i = 0; i < itineraryDto.size(); i++) {
             ItineraryDto dto = itineraryDto.get(i);
@@ -90,11 +89,11 @@ public class ItineraryServiceDB implements ItineraryService {
     public  int[][] getItineraryGraphByFlightTime(List<ItineraryDto> itineraryDto)
     {
 
-        final int MAXN = 100;
+        final int size = itineraryDto.size();
         final int INF = (int) 1e7;
-        int [][]itineraryMap = new int[MAXN][MAXN];
-        for(int i=0;i<MAXN;i++){
-            for(int j=0;j<MAXN;j++)
+        int [][]itineraryMap = new int[size][size];
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++)
             {
                 if(j==i)
                     itineraryMap[i][j]=0;
@@ -117,11 +116,11 @@ public class ItineraryServiceDB implements ItineraryService {
 
     public  int[][] getItineraryGraphByFlightConnection(List<ItineraryDto> itineraryDto)
     {
-        final int MAXN = 100;
+        final int size = itineraryDto.size();
         final int INF = (int) 1e7;
-        int [][]itineraryMap = new int[MAXN][MAXN];
-        for(int i=0;i<MAXN;i++){
-            for(int j=0;j<MAXN;j++)
+        int [][]itineraryMap = new int[size][size];
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++)
             {
                 itineraryMap[i][j]=INF;
             }
