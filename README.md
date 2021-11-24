@@ -27,17 +27,6 @@ curl 'http://localhost:8080/itinerary/listitinerary/2' -H 'auth_token: token'
 
 ["shortestItineraryByConnection","[2, 0, 1]","[2, 0]","[2, 3]","shortestItineraryByTime","[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
 
-curl http://localhost:8088/itinerary/getshortestitinerarybyconnection/user/password/2
-
-["[2, 0, 1]","[2, 0]","[2, 3]"]
-
-curl http://localhost:8088/itinerary/getshortestitinerarybytime/user/password/2
-
-["[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
-
-curl http://localhost:8088/itinerary/listitinerary/bymap/user/password/2
-
-{"connection":["[2, 0, 1]","[2, 0]","[2, 3]"],"time":["[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]}
 
 2: The technology stack used in this project
 ============================================
