@@ -26,13 +26,10 @@ public class ItineraryController {
         }
         return false;
     }
-    @RequestMapping(value = "/getshortestitinerarybyconnection/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/getshortestitinerarybyconnection/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public List<String> getShortestItineraryByConnection(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
+    public List<String> getShortestItineraryByConnection(@PathVariable String id){
         List<String> result = new ArrayList<>();
-        if(!name.equals("user")||!pwd.equals("password")) {
-            return result;
-        }
         if(checkCityId(id))
         {
             result.add("Invalid Original City Id");
@@ -46,13 +43,10 @@ public class ItineraryController {
         return result;
     }
 
-    @RequestMapping(value = "/getshortestitinerarybytime/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/getshortestitinerarybytime/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public List<String> getShortestItineraryByTime(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
+    public List<String> getShortestItineraryByTime(@PathVariable String id){
         List<String> result = new ArrayList<>();
-        if(!name.equals("user")||!pwd.equals("password")) {
-            return result;
-        }
         if(checkCityId(id))
         {
             result.add("Invalid Original City Id");

@@ -13,7 +13,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        System.out.println(request.getHeader("auth_token"));
         if (!handler.getClass().isAssignableFrom(HandlerMethod.class)) {
             return true;
         }

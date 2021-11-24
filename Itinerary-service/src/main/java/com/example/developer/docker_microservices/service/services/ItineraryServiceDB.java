@@ -53,7 +53,7 @@ public class ItineraryServiceDB implements ItineraryService {
         return result;
     }
 
-    public Vector<Integer> getShortestItineraryByTime(int [][]graph, int number,int originalCityId, int destinationCityId)
+    private Vector<Integer> getShortestItineraryByTime(int [][]graph, int number,int originalCityId, int destinationCityId)
     {
         Vector<Integer> path;
         GFG gfg=new GFG();
@@ -63,7 +63,7 @@ public class ItineraryServiceDB implements ItineraryService {
         return path;
     }
 
-    public Vector<Integer> getShortestItineraryByConnection(int [][]graph, int number,int originalCityId, int destinationCityId)
+    private Vector<Integer> getShortestItineraryByConnection(int [][]graph, int number,int originalCityId, int destinationCityId)
     {
         Vector<Integer> path;
         GFG gfg=new GFG();
@@ -86,7 +86,7 @@ public class ItineraryServiceDB implements ItineraryService {
         }
         return destinationCityList;
     }
-    public  int[][] getItineraryGraphByFlightTime(List<ItineraryDto> itineraryDto)
+    private int[][] getItineraryGraphByFlightTime(List<ItineraryDto> itineraryDto)
     {
 
         final int size = itineraryDto.size();
@@ -114,7 +114,7 @@ public class ItineraryServiceDB implements ItineraryService {
         return itineraryMap;
     }
 
-    public  int[][] getItineraryGraphByFlightConnection(List<ItineraryDto> itineraryDto)
+    private int[][] getItineraryGraphByFlightConnection(List<ItineraryDto> itineraryDto)
     {
         final int size = itineraryDto.size();
         final int INF = (int) 1e7;
