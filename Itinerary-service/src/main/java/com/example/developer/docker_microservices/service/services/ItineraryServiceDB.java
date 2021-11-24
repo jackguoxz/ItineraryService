@@ -23,7 +23,7 @@ public class ItineraryServiceDB implements ItineraryService {
     public List<String> getShortestItineraryByTime(int originalCityId)
     {
         List<String> result=new ArrayList<>();
-        List<ItineraryDto> itineraryDto=listClasses();
+        List<ItineraryDto> itineraryDto=listItinerary();
         int [][]graph=getItineraryGraphByFlightTime(itineraryDto);
         List<Integer> list=getDestinationCityList(itineraryDto);
         for(int i=0;i<list.size();i++) {
@@ -40,7 +40,7 @@ public class ItineraryServiceDB implements ItineraryService {
     public List<String> getShortestItineraryByConnection(int originalCityId)
     {
         List<String> result=new ArrayList<>();
-        List<ItineraryDto> itineraryDto=listClasses();
+        List<ItineraryDto> itineraryDto=listItinerary();
         int [][]graph=getItineraryGraphByFlightConnection(itineraryDto);
         List<Integer> list=getDestinationCityList(itineraryDto);
         for(int i=0;i<list.size();i++) {
@@ -61,7 +61,6 @@ public class ItineraryServiceDB implements ItineraryService {
         gfg.initialise(number, graph);
         gfg.floydWarshall(number);
         path=gfg.constructPath(originalCityId,destinationCityId);
-        gfg.printPath(path);
         return path;
     }
 
@@ -72,7 +71,6 @@ public class ItineraryServiceDB implements ItineraryService {
         gfg.initialise(number, graph);
         gfg.floydWarshall(number);
         path=gfg.constructPath(originalCityId,destinationCityId);
-        gfg.printPath(path);
         return path;
     }
 
@@ -138,7 +136,7 @@ public class ItineraryServiceDB implements ItineraryService {
         return itineraryMap;
     }
     @Override
-    public List<ItineraryDto> listClasses() {
+    public List<ItineraryDto> listItinerary() {
         return itineraryDAO
                 .findAll()
                 .stream()
