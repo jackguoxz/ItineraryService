@@ -5,14 +5,14 @@ API Description: Given an origin city will return a list of itineraries by List,
 http://localhost/itinerary/listitinerary/{cityid}
 ---------------------------------------
 Parameters
-Name Required/Optional  Type         Description 
-id   required           String         "the id of the departure city"
+Name     Required/Optional  Type         Description 
+cityid  required           String         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
 -----------
 Examples of API calls:
-http://localhost:8088/itinerary/listitinerary/user/password/1
+http://localhost:8088/itinerary/listitinerary/1
 ---------------------------------------
 Sample response
 ["shortestItineraryByConnection","[1, 0]","[1, 0, 3]","[1, 2]","shortestItineraryByTime","[1, 2, 3, 0]","[1, 2, 3]","[1, 2]"]
@@ -20,17 +20,17 @@ Sample response
 
 API Description: Given an origin city will return a list of itineraries by Map, one based in the least number of connections and the second based in the least time. 
 ---------------------------------------
-http://localhost/itinerary/listitinerary/bymap/user/password/{cityid}
+http://localhost/itinerary/listitinerary/bymap/{cityid}
 ---------------------------------------
 Parameters
-Name Required/Optional  Type         Description 
-id   required           String         "the id of the departure city"
+Name Required/Optional      Type          Description 
+cityid   required           String         "the id of the departure city"
 ---------------------------------------
 Return type 
 Map<String,List<String>>
 -----------
 Examples of API calls:
-http://localhost:8088/itinerary/listitinerary/bymap/user/password/2
+http://localhost:8088/itinerary/listitinerary/bymap//2
 ---------------------------------------
 Sample response
 {"connection":["[2, 0, 1]","[2, 0]","[2, 3]"],"time":["[2, 0, 1]","[2, 0]","[2, 3]"]}
@@ -38,17 +38,17 @@ Sample response
 
 API Description: Given an origin city will return a list of itineraries, based in the least number of connections 
 ---------------------------------------
-http://localhost/itinerary/getshortestitinerarybyconnection/user/password/{cityid}
+http://localhost/itinerary/getshortestitinerarybyconnection/{cityid}
 ---------------------------------------
 Parameters
-Name Required/Optional  Type         Description 
-id   required           String         "the id of the departure city"
+Name    Required/Optional  Type         Description 
+cityid  required           String         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
 -----------
 Examples of API calls:
-http://localhost:8088/itinerary/getshortestitinerarybyconnection/user/password/2
+http://localhost:8088/itinerary/getshortestitinerarybyconnection//2
 ---------------------------------------
 Sample response
 ["[2, 0, 1]","[2, 0]","[2, 3]"]
@@ -58,17 +58,17 @@ Sample response
 
 API Description: Given an origin city will return a list of itineraries, based in the least number of time 
 ---------------------------------------
-http://localhost/itinerary/getshortestitinerarybytime/user/password/{cityid}
+http://localhost/itinerary/getshortestitinerarybytime/{cityid}
 ---------------------------------------
 Parameters
 Name Required/Optional  Type         Description 
-id   required           String         "the id of the departure city"
+cityid  required           String         "the id of the departure city"
 ---------------------------------------
 Return type 
 List<String>
 -----------
 Examples of API calls:
-http://localhost:8088/itinerary/getshortestitinerarybytime/user/password/2
+http://localhost:8088/itinerary/getshortestitinerarybytime/2
 ---------------------------------------
 Sample response
 ["[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
