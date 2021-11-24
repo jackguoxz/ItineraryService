@@ -79,9 +79,9 @@ Run below command:(springio/server is the image of Itinerary-Service, and spring
 
 docker network create mynetwork
 
-docker run --name  Itinerary-Service -p 8080:8080 -d --network mynetwork springio/server
+docker run --name  Itinerary-Service -p 8088:8088 -d --network mynetwork springio/server
 
-docker run --name Itinerary-Rest -p 8088:8088 -d --network mynetwork springio/client
+docker run --name Itinerary-Rest -p 8080:8080 -d --network mynetwork springio/client
 
 
     
