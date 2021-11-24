@@ -3,10 +3,8 @@ package com.example.developer.docker_microservices.service.controllers;
 
 import com.example.developer.docker_microservices.service.services.ItineraryService;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 
 @RestController
@@ -56,8 +54,14 @@ public class ItineraryController {
         if(!name.equals("user")||!pwd.equals("password")) {
             return result;
         }
-        int cityId=Integer.parseInt(id);
-        if(cityId<0)
+
+        int cityId = Integer.parseInt(id);
+        Set<Integer> originalCityList=itineraryService.getOriginalCityIdList();
+        Iterator it = originalCityList.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+        if(!originalCityList.contains(cityId) )
         {
             result.add("Invalid Departure CityId");
             return result;

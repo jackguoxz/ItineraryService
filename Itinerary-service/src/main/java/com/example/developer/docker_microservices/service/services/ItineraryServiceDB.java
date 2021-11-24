@@ -5,9 +5,7 @@ import com.example.developer.docker_microservices.service.dtos.ItineraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,10 +24,11 @@ public class ItineraryServiceDB implements ItineraryService {
         List<ItineraryDto> itineraryDto=listItinerary();
         int [][]graph=getItineraryGraphByFlightTime(itineraryDto);
         List<Integer> list=getDestinationCityList(itineraryDto);
-        for(int i=0;i<list.size();i++) {
+        int size=list.size();
+        for(int i=0;i<size;i++) {
             int destinationCityId = list.get(i);
             if(destinationCityId!=originalCityId) {
-                Vector<Integer> path = getShortestItineraryByTime(graph, 4, originalCityId, destinationCityId);
+                Vector<Integer> path = getShortestItineraryByTime(graph, size, originalCityId, destinationCityId);
                 result.add(path.toString());
             }
         }
@@ -43,16 +42,16 @@ public class ItineraryServiceDB implements ItineraryService {
         List<ItineraryDto> itineraryDto=listItinerary();
         int [][]graph=getItineraryGraphByFlightConnection(itineraryDto);
         List<Integer> list=getDestinationCityList(itineraryDto);
-        for(int i=0;i<list.size();i++) {
+        int size=list.size();
+        for(int i=0;i<size;i++) {
             int destinationCityId = list.get(i);
             if(destinationCityId!=originalCityId) {
-                Vector<Integer> path = getShortestItineraryByTime(graph, 4, originalCityId, destinationCityId);
+                Vector<Integer> path = getShortestItineraryByTime(graph, size, originalCityId, destinationCityId);
                 result.add(path.toString());
             }
         }
         return result;
     }
-
 
     public Vector<Integer> getShortestItineraryByTime(int [][]graph, int number,int originalCityId, int destinationCityId)
     {
@@ -135,6 +134,20 @@ public class ItineraryServiceDB implements ItineraryService {
         }
         return itineraryMap;
     }
+
+    @Override
+    public Set<Integer> getOriginalCityIdList(){
+        Set originalCityIdList = new HashSet();
+        List<ItineraryDto> itineraryDto=listItinerary();
+        for(int i=0;i<itineraryDto.size();i++)
+        {
+            ItineraryDto dto = itineraryDto.get(i);
+            int originalCityId=dto.getOriginalCityId();
+            originalCityIdList.add(originalCityId);
+        }
+        return originalCityIdList;
+    }
+
     @Override
     public List<ItineraryDto> listItinerary() {
         return itineraryDAO

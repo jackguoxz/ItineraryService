@@ -39,7 +39,6 @@ public class ItineraryController {
     @GetMapping("/itinerary/listitinerary/{id}")
     public ResponseEntity<List<String>> listItinerary(@PathVariable String id){
         String url="http://"+ serviceHost +"/itinerary/listitinerary/user/password/"+id;
-        System.out.println(url);
         return restTemplate
                 .exchange(url, HttpMethod.GET, null,
                         new ParameterizedTypeReference<List<String>>() {});
