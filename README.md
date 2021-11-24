@@ -73,15 +73,15 @@ https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
 
 Add one line in this file Itinerary-Rest/src/main/resources/application.properties(https://github.com/jackguoxz/ItineraryService/tree/main/Itinerary-Rest/src/main/resources/application.properties) 
 
-service.host=banana:8088
+service.host=Itinerary-Service:8088
 
 Run below command:(springio/server is the image of Itinerary-Service, and springio/client is the image of Itinerary-Rest)
 
 docker network create mynetwork
 
-docker run --name apple -p 8080:8080 -d --network mynetwork springio/server
+docker run --name  Itinerary-Service -p 8080:8080 -d --network mynetwork springio/server
 
-docker run --name banana -p 8088:8088 -d --network mynetwork springio/client
+docker run --name Itinerary-Rest -p 8088:8088 -d --network mynetwork springio/client
 
 
     
