@@ -17,6 +17,16 @@ public class ItineraryController {
     }
 
 
+    public boolean checkCityId(String Id)
+    {
+        int cityId = Integer.parseInt(Id);
+        Set<Integer> originalCityList=itineraryService.getOriginalCityIdList();
+        if(!originalCityList.contains(cityId) )
+        {
+            return  true;
+        }
+        return false;
+    }
     @RequestMapping(value = "/getshortestitinerarybyconnection/{name}/{pwd}/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItineraryByConnection(@PathVariable String name, @PathVariable String pwd,@PathVariable String id){
@@ -24,6 +34,11 @@ public class ItineraryController {
         if(!name.equals("user")||!pwd.equals("password")) {
             return result;
         }
+        if(checkCityId(id))
+        {
+            result.add("Invalid Original City Id");
+            return  result;
+        };
         int cityId=Integer.parseInt(id);
         List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnection(cityId);
         for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
@@ -39,6 +54,11 @@ public class ItineraryController {
         if(!name.equals("user")||!pwd.equals("password")) {
             return result;
         }
+        if(checkCityId(id))
+        {
+            result.add("Invalid Original City Id");
+            return  result;
+        };
         int cityId=Integer.parseInt(id);
         List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTime(cityId);
         for (int i = 0; i < shortestItineraryByTime.size(); i++) {
@@ -54,18 +74,12 @@ public class ItineraryController {
         if(!name.equals("user")||!pwd.equals("password")) {
             return result;
         }
-
-        int cityId = Integer.parseInt(id);
-        Set<Integer> originalCityList=itineraryService.getOriginalCityIdList();
-        Iterator it = originalCityList.iterator();
-        while (it.hasNext()) {
-            System.out.println(it.next());
-        }
-        if(!originalCityList.contains(cityId) )
+        if(checkCityId(id))
         {
-            result.add("Invalid Departure CityId");
-            return result;
-        }
+            result.add("Invalid Original City Id");
+            return  result;
+        };
+        int cityId=Integer.parseInt(id);
         List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnection(cityId);
         List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTime(cityId);
         result.add("shortestItineraryByConnection");
@@ -86,6 +100,12 @@ public class ItineraryController {
         if(!name.equals("user")||!pwd.equals("password")) {
             return map;
         }
+        if(checkCityId(id)) {
+            List<String> string=new ArrayList<>();
+            string.add(id);
+            map.put("Invalid Original City Id",string);
+            return  map;
+        };
         int cityId=Integer.parseInt(id);
         List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnection(cityId);
         List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTime(cityId);
