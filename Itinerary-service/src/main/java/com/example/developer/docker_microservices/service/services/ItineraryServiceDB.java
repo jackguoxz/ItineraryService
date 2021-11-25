@@ -56,7 +56,7 @@ public class ItineraryServiceDB implements ItineraryService {
     private Vector<Integer> getShortestItineraryByTime(int [][]graph, int number,int originalCityId, int destinationCityId)
     {
         Vector<Integer> path;
-        GFG gfg=new GFG();
+        GFG gfg=new GFG(number);
         gfg.initialise(number, graph);
         gfg.floydWarshall(number);
         path=gfg.constructPath(originalCityId,destinationCityId);
@@ -66,7 +66,7 @@ public class ItineraryServiceDB implements ItineraryService {
     private Vector<Integer> getShortestItineraryByConnection(int [][]graph, int number,int originalCityId, int destinationCityId)
     {
         Vector<Integer> path;
-        GFG gfg=new GFG();
+        GFG gfg=new GFG(number);
         gfg.initialise(number, graph);
         gfg.floydWarshall(number);
         path=gfg.constructPath(originalCityId,destinationCityId);

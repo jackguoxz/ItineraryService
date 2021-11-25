@@ -7,19 +7,25 @@ import java.util.*;
 
 class GFG{
 
-    static final int MAXN = 100;
+    //static final int MAXN = 100;
 
     // Infinite value for array
     static int INF = (int) 1e7;
-
-    static int [][]dis = new int[MAXN][MAXN];
-    static int [][]Next = new int[MAXN][MAXN];
+    public int [][]dis;
+    public int [][]Next;
 
     // Initializing the distance and
 // Next array
+
+    public GFG(int V)
+    {
+        dis = new int[V][V];
+        Next = new int[V][V];
+    }
     public void initialise(int V,
                            int [][] graph)
     {
+
         for(int i = 0; i < V; i++)
         {
             for(int j = 0; j < V; j++)
