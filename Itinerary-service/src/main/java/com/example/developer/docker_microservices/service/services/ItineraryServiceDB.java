@@ -24,8 +24,8 @@ public class ItineraryServiceDB implements ItineraryService {
         List<ItineraryDto> itineraryDto=listItinerary();
         int [][]graph=getItineraryGraphByFlightTime(itineraryDto);
         List<Integer> list=getDestinationCityList(itineraryDto);
-        int size=list.size();
-        for(int i=0;i<size;i++) {
+        int size=itineraryDto.size();
+        for(int i=0;i<list.size();i++) {
             int destinationCityId = list.get(i);
             if(destinationCityId!=originalCityId) {
                 Vector<Integer> path = getShortestItineraryByTime(graph, size, originalCityId, destinationCityId);
@@ -42,11 +42,11 @@ public class ItineraryServiceDB implements ItineraryService {
         List<ItineraryDto> itineraryDto=listItinerary();
         int [][]graph=getItineraryGraphByFlightConnection(itineraryDto);
         List<Integer> list=getDestinationCityList(itineraryDto);
-        int size=list.size();
-        for(int i=0;i<size;i++) {
+        int size=itineraryDto.size();
+        for(int i=0;i<list.size();i++) {
             int destinationCityId = list.get(i);
             if(destinationCityId!=originalCityId) {
-                Vector<Integer> path = getShortestItineraryByTime(graph, size, originalCityId, destinationCityId);
+                Vector<Integer> path = getShortestItineraryByConnection(graph, size, originalCityId, destinationCityId);
                 result.add(path.toString());
             }
         }
