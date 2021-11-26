@@ -112,7 +112,18 @@ public class ItineraryController {
             return  result;
         };
         int cityId=Integer.parseInt(id);
-        result = itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
+        List<String>  shortestItineraryByTimeByDijkstra= itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
+        List<String>  shortestItineraryByConectionByDijkstra= itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
+        result.add("Connection");
+        for (int i = 0; i < shortestItineraryByTimeByDijkstra.size(); i++) {
+            result.add(shortestItineraryByTimeByDijkstra.get(i));
+        }
+        result.add("Time");
+        for (int i = 0; i < shortestItineraryByConectionByDijkstra.size(); i++) {
+            result.add(shortestItineraryByConectionByDijkstra.get(i));
+        }
         return  result;
     }
+
+
 }

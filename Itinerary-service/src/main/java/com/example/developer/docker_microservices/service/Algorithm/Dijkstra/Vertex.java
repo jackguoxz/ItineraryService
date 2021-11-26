@@ -1,8 +1,8 @@
 package com.example.developer.docker_microservices.service.Algorithm.Dijkstra;
 
 public class Vertex {
-    final private String id;
-    final private String name;
+    private String id;
+    private String name;
 
 
     public Vertex(String id, String name) {
@@ -13,8 +13,16 @@ public class Vertex {
         return id;
     }
 
+    public void setId(String id) {
+        this.id=id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name=name;
     }
 
     @Override

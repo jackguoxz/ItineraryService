@@ -10,5 +10,6 @@ public interface ItineraryService {
     List<String> getShortestItineraryByTime(int id);
     List<String> getShortestItineraryByConnection(int id);
     List<String> getShortestItineraryByTimeByDijkstra(int id);
+    List<String> getShortestItineraryByConnectionByDijkstra(int id);
     Set<Integer> getOriginalCityIdList();
 }

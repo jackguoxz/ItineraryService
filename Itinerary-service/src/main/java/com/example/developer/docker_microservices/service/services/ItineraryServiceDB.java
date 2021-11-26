@@ -36,11 +36,22 @@ public class ItineraryServiceDB implements ItineraryService {
         return result;
     }
 
+    @Override
     public List<String> getShortestItineraryByTimeByDijkstra(int originalCityId)
     {
         List<String> result=new ArrayList<>();
         List<ItineraryDto> itineraryDto=listItinerary();
-        Dijkstra.buildEdges(itineraryDto.size(),itineraryDto);
+        Dijkstra.buildEdgesByTime(itineraryDto);
+        result=Dijkstra.convert(originalCityId);
+        return result;
+    }
+
+    @Override
+    public List<String> getShortestItineraryByConnectionByDijkstra(int originalCityId)
+    {
+        List<String> result=new ArrayList<>();
+        List<ItineraryDto> itineraryDto=listItinerary();
+        Dijkstra.buildEdgesByConnection(itineraryDto);
         result=Dijkstra.convert(originalCityId);
         return result;
     }
