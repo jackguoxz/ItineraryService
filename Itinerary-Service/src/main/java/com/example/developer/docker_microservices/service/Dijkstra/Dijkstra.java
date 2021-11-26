@@ -1,9 +1,8 @@
-package com.example.developer.docker_microservices.service.Algorithm.Dijkstra;
+package com.example.developer.docker_microservices.service.Dijkstra;
 
 
 import java.util.*;
 
-import com.example.developer.docker_microservices.service.dao.ItineraryDao;
 import com.example.developer.docker_microservices.service.dtos.ItineraryDto;
 
 public class Dijkstra {

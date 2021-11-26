@@ -1,6 +1,6 @@
 package com.example.developer.docker_microservices.service.services;
 
-import com.example.developer.docker_microservices.service.Algorithm.Dijkstra.Dijkstra;
+import com.example.developer.docker_microservices.service.Dijkstra.Dijkstra;
 import com.example.developer.docker_microservices.service.dao.ItineraryDao;
 import com.example.developer.docker_microservices.service.dtos.ItineraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
