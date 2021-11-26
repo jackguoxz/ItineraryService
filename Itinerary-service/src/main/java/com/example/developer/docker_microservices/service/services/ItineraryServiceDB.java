@@ -1,5 +1,6 @@
 package com.example.developer.docker_microservices.service.services;
 
+import com.example.developer.docker_microservices.service.Algorithm.Dijkstra.Dijkstra;
 import com.example.developer.docker_microservices.service.dao.ItineraryDao;
 import com.example.developer.docker_microservices.service.dtos.ItineraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,15 @@ public class ItineraryServiceDB implements ItineraryService {
                 result.add(path.toString());
             }
         }
+        return result;
+    }
+
+    public List<String> getShortestItineraryByTimeByDijkstra(int originalCityId)
+    {
+        List<String> result=new ArrayList<>();
+        List<ItineraryDto> itineraryDto=listItinerary();
+        Dijkstra.buildEdges(itineraryDto.size(),itineraryDto);
+        result=Dijkstra.convert(originalCityId);
         return result;
     }
 

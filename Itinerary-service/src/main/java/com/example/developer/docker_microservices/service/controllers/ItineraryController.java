@@ -100,4 +100,19 @@ public class ItineraryController {
         map.put("time",shortestItineraryByTime);
         return map;
     }
+
+
+    @RequestMapping(value = "/listitinerary/dijkstra/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public List<String> getShortestItineraryByDijkstra(@PathVariable String id){
+        List<String> result = new ArrayList<>();
+        if(checkCityId(id))
+        {
+            result.add("Invalid Original City Id");
+            return  result;
+        };
+        int cityId=Integer.parseInt(id);
+        result = itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
+        return  result;
+    }
 }
