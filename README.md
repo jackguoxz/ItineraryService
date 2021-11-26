@@ -19,14 +19,13 @@ With Itinerary-Service turned on, navigate to the Itinerary-Rest directory and s
  
 Here are the examples:
 
-curl 'http://localhost:8080/itinerary/listitinerary/1' -H 'auth_token: token'
+curl 'http://localhost:8080/itinerary/listitinerary/101' -H 'auth_token: token'
 
-["shortestItineraryByConnection","[1, 0]","[1, 0, 3]","[1, 2]","shortestItineraryByTime","[1, 2, 3, 0]","[1, 2, 3]","[1, 2]"]
- 
-curl 'http://localhost:8080/itinerary/listitinerary/2' -H 'auth_token: token'
+["Connection","[101, 102]","[101, 102, 103]","[101, 102, 103, 104]","[101, 102, 106]","Time","[101, 102]","[101, 102, 103]","[101, 102, 103, 104]","[101, 102, 106]"]
 
-["shortestItineraryByConnection","[2, 0, 1]","[2, 0]","[2, 3]","shortestItineraryByTime","[2, 3, 0, 1]","[2, 3, 0]","[2, 3]"]
+curl 'http://localhost:8080/itinerary/listitinerary/102' -H 'auth_token: token'
 
+["Connection","[102, 103, 104, 101]","[102, 103]","[102, 103, 104]","[102, 106]","Time","[102, 103, 104, 101]","[102, 103]","[102, 103, 104]","[102, 106]"]
 
 2: The technology stack used in this project
 ============================================
