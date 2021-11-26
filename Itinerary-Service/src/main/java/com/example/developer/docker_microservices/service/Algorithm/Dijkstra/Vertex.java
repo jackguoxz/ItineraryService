@@ -1,4 +1,4 @@
-package com.example.developer.docker_microservices.service.Dijkstra;
+package com.example.developer.docker_microservices.service.Algorithm.Dijkstra;
 
 public class Vertex {
     final private String id;

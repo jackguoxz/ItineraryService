@@ -1,4 +1,4 @@
-package com.example.developer.docker_microservices.service.Dijkstra;
+package com.example.developer.docker_microservices.service.Algorithm.Dijkstra;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.developer.docker_microservices.service.Dijkstra;
+package com.example.developer.docker_microservices.service.Algorithm.Dijkstra;
 
 public class Edge  {
     private final String id;
