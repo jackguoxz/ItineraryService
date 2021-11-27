@@ -40,13 +40,16 @@ RestTemplate is used when the API in UI service(Itinerary-Rest) call API inbusin
 You could refer to this picture for the graph demo in this project:
 https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
 
-        itineraryDAO.save(new Itinerary(0,1,"10", "13"));
-        itineraryDAO.save(new Itinerary(1,0,"10", "18"));
-        itineraryDAO.save(new Itinerary(2,0,"10", "15"));
-        itineraryDAO.save(new Itinerary(0,3,"10", "17"));
-        itineraryDAO.save(new Itinerary(3,0,"10", "12"));
-        itineraryDAO.save(new Itinerary(1,2,"10", "12"));
-        itineraryDAO.save(new Itinerary(2,3,"10", "11"));
+        itineraryDAO.save(new Itinerary(101+"",102+"","10", "13"));
+        itineraryDAO.save(new Itinerary(102+"",101+"","10", "18"));
+        itineraryDAO.save(new Itinerary("B",101+"","10", "15"));
+        itineraryDAO.save(new Itinerary(101+"",104+"","10", "17"));
+        itineraryDAO.save(new Itinerary(104+"",101+"","10", "12"));
+        itineraryDAO.save(new Itinerary(102+"","B","10", "12"));
+        itineraryDAO.save(new Itinerary("B",104+"","10", "11"));
+        itineraryDAO.save(new Itinerary(102+"","A","10", "11"));
+        
+
 
 4: To be enhanced in the future
 ============================================
