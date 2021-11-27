@@ -72,11 +72,11 @@ public class ItineraryController {
         int cityId=Integer.parseInt(id);
         List<String>  shortestItineraryByTimeByDijkstra= itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
         List<String>  shortestItineraryByConectionByDijkstra= itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
-        result.add("Connection");
+        result.add("Time");
         for (int i = 0; i < shortestItineraryByTimeByDijkstra.size(); i++) {
             result.add(shortestItineraryByTimeByDijkstra.get(i));
         }
-        result.add("Time");
+        result.add("Connection");
         for (int i = 0; i < shortestItineraryByConectionByDijkstra.size(); i++) {
             result.add(shortestItineraryByConectionByDijkstra.get(i));
         }
