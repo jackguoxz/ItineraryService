@@ -35,7 +35,7 @@ Floyd Warshall Algorithm is used to compute the Shortest way(in time and in conn
 
 RestTemplate is used when the API in UI service(Itinerary-Rest) call API inbusiness service (Itinerary-Service).The RestTemplate is the central class within the Spring framework for executing synchronous HTTP requests on the client side.
 
-3: About the Floyd Warshall Algorithm
+3: About the Dijkstra Algorithm
 ============================================
 You could refer to this picture for the graph demo in this project:
 https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
@@ -48,7 +48,7 @@ https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
         itineraryDAO.save(new Itinerary(102+"","B","10", "12"));
         itineraryDAO.save(new Itinerary("B",104+"","10", "11"));
         itineraryDAO.save(new Itinerary(102+"","A","10", "11"));
-        
+
 
 
 4: To be enhanced in the future
