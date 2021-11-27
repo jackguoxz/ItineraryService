@@ -21,11 +21,11 @@ Here are the examples:
 
 curl 'http://localhost:8080/itinerary/listitinerary/101' -H 'auth_token: token'
 
-["Connection","[101, 102]","[101, 102, 103]","[101, 102, 103, 104]","[101, 102, 106]","Time","[101, 102]","[101, 102, 103]","[101, 102, 103, 104]","[101, 102, 106]"]
+["Time","[101, 102, A]","[101, 102, B]","[101, 102]","[101, 104]","Connection","[101, 102, A]","[101, 102, B]","[101, 102]","[101, 104]"]
 
-curl 'http://localhost:8080/itinerary/listitinerary/102' -H 'auth_token: token'
+curl 'http://localhost:8080/itinerary/listitinerary/B' -H 'auth_token: token'
 
-["Connection","[102, 103, 104, 101]","[102, 103]","[102, 103, 104]","[102, 106]","Time","[102, 103, 104, 101]","[102, 103]","[102, 103, 104]","[102, 106]"]
+["Time","[B, 101, 102, A]","[B, 101]","[B, 101, 102]","[B, 104]","Connection","[B, 101, 102, A]","[B, 101]","[B, 101, 102]","[B, 104]"]
 
 2: The technology stack used in this project
 ============================================
