@@ -18,8 +18,8 @@ public class Itinerary {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NonNull private int originalCityId;
-    @NonNull private int destinationCityId;
+    @NonNull private String originalCityId;
+    @NonNull private String destinationCityId;
     @NonNull private String departureTime;
     @NonNull private String arrivalTime;
 }

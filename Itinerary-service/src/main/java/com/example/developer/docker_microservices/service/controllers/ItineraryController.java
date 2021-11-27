@@ -16,11 +16,11 @@ public class ItineraryController {
     }
 
 
-    public boolean checkCityId(String Id)
+    public boolean checkCityId(String id)
     {
-        int cityId = Integer.parseInt(Id);
-        Set<Integer> originalCityList=itineraryService.getOriginalCityIdList();
-        if(!originalCityList.contains(cityId) )
+        //int cityId = Integer.parseInt(Id);
+        Set<String> originalCityList=itineraryService.getOriginalCityIdList();
+        if(!originalCityList.contains(id) )
         {
             return  true;
         }
@@ -35,8 +35,8 @@ public class ItineraryController {
             result.add("Invalid Original City Id");
             return  result;
         };
-        int cityId=Integer.parseInt(id);
-        List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnectionByDijkstra(cityId);
+        //int cityId=Integer.parseInt(id);
+        List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnectionByDijkstra(id);
         for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
             result.add(shortestItineraryByConnection.get(i));
         }
@@ -52,8 +52,8 @@ public class ItineraryController {
             result.add("Invalid Original City Id");
             return  result;
         };
-        int cityId=Integer.parseInt(id);
-        List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
+        //int cityId=Integer.parseInt(id);
+        List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTimeByDijkstra(id);
         for (int i = 0; i < shortestItineraryByTime.size(); i++) {
             result.add(shortestItineraryByTime.get(i));
         }
@@ -69,16 +69,16 @@ public class ItineraryController {
             result.add("Invalid Original City Id");
             return  result;
         };
-        int cityId=Integer.parseInt(id);
-        List<String>  shortestItineraryByTimeByDijkstra= itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
-        List<String>  shortestItineraryByConectionByDijkstra= itineraryService.getShortestItineraryByTimeByDijkstra(cityId);
+        //int cityId=Integer.parseInt(id);
+        List<String>  shortestItineraryByTimeByDijkstra= itineraryService.getShortestItineraryByTimeByDijkstra(id);
+        List<String>  shortestItineraryByConnectionByDijkstra= itineraryService.getShortestItineraryByConnectionByDijkstra(id);
         result.add("Time");
         for (int i = 0; i < shortestItineraryByTimeByDijkstra.size(); i++) {
             result.add(shortestItineraryByTimeByDijkstra.get(i));
         }
         result.add("Connection");
-        for (int i = 0; i < shortestItineraryByConectionByDijkstra.size(); i++) {
-            result.add(shortestItineraryByConectionByDijkstra.get(i));
+        for (int i = 0; i < shortestItineraryByConnectionByDijkstra.size(); i++) {
+            result.add(shortestItineraryByConnectionByDijkstra.get(i));
         }
         return  result;
     }

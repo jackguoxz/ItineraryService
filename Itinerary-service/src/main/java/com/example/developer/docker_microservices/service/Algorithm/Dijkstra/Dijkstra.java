@@ -13,7 +13,7 @@ public class Dijkstra {
     public  static void main(String []args)
     {
         buildEdges(11);
-        List<String > list=convert(102);
+        List<String > list=convert(102+"");
         System.out.println(list);
 
     }
@@ -31,8 +31,8 @@ public class Dijkstra {
             String departureTime =list.get(i).getDepartureTimeName();
             String arrivalTime=list.get(i).getArrivalTimeName();
             int flightTime=Integer.parseInt(arrivalTime)-Integer.parseInt(departureTime);
-            int sourceLocNo=list.get(i).getOriginalCityId();
-            int destLocNo=list.get(i).getDestinationCityId();
+            String sourceLocNo=list.get(i).getOriginalCityId();
+            String destLocNo=list.get(i).getDestinationCityId();
             //Vertex source=new Vertex(sourceLocNo+"",sourceLocNo+"");
             //Vertex dest=new Vertex(destLocNo+"",destLocNo+"");
             addLane("Edge_"+i,sourceLocNo,destLocNo,flightTime);
@@ -54,8 +54,8 @@ public class Dijkstra {
             //String departureTime =list.get(i).getDepartureTimeName();
             //String arrivalTime=list.get(i).getArrivalTimeName();
             //int flightTime=Integer.parseInt(arrivalTime)-Integer.parseInt(departureTime);
-            int sourceLocNo=list.get(i).getOriginalCityId();
-            int destLocNo=list.get(i).getDestinationCityId();
+            String sourceLocNo=list.get(i).getOriginalCityId();
+            String destLocNo=list.get(i).getDestinationCityId();
             //Vertex source=new Vertex(sourceLocNo+"",sourceLocNo+"");
             //Vertex dest=new Vertex(destLocNo+"",destLocNo+"");
             addLane("Edge_"+i,sourceLocNo,destLocNo,1);
@@ -72,9 +72,11 @@ public class Dijkstra {
             Vertex location = new Vertex("" + i, "" + i);
             nodes.add(location);
         }
+        /*
         addLane("101", 101, 102, 85);
         addLane("101", 101, 103, 217);
         addLane("101", 102, 103, 10);
+        */
 
         /*
         addLane("2", 2, 6, 186);
@@ -90,7 +92,7 @@ public class Dijkstra {
 
         return  edges;
     }
-    public static List<String> convert(int start) {
+    public static List<String> convert(String start) {
         /*
         itineraryDAO.save(new Itinerary(0,1,"10", "13"));
         itineraryDAO.save(new Itinerary(1,0,"10", "18"));
@@ -107,11 +109,11 @@ public class Dijkstra {
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         LinkedList<Vertex> path = new LinkedList<>();
-        Set<Integer> destinationCityId=new HashSet<>();
+        Set<String> destinationCityId=new HashSet<>();
 
         for(int i=0;i<edges.size();i++)
         {
-            int id=Integer.parseInt(edges.get(i).getDestination().getName());
+            String id=edges.get(i).getDestination().getName();
             destinationCityId.add(id);
         }
 
@@ -121,11 +123,11 @@ public class Dijkstra {
         //System.out.println(nodes.get());
         //path = dijkstra.getPath(nodes.get(2));
         //System.out.println(path);
-        Vertex source=new Vertex(start+"",start+"");
-        for(int id: destinationCityId)
+        Vertex source=new Vertex(start,start);
+        for(String id: destinationCityId)
         {
             //System.out.println();
-            Vertex dest=new Vertex(id+"",id+"");
+            Vertex dest=new Vertex(id,id);
             //dijkstra.execute(nodes.get(start));
             dijkstra.execute(source);
             //int id=Integer.parseInt(edges.get(i).getDestination().getName());
@@ -147,10 +149,10 @@ public class Dijkstra {
 
     }
 
-    private static void addLane(String laneId, int sourceLocNo, int destLocNo,
+    private static void addLane(String laneId, String sourceLocNo, String destLocNo,
                          int duration) {
-        Vertex v1=new Vertex(sourceLocNo+"",sourceLocNo+"");
-        Vertex v2=new Vertex(destLocNo+"",destLocNo+"");
+        Vertex v1=new Vertex(sourceLocNo,sourceLocNo);
+        Vertex v2=new Vertex(destLocNo,destLocNo);
        // v.setName(sourceLocNo+"");
         //Edge lane = new Edge(laneId,nodes.get(sourceLocNo), nodes.get(destLocNo), duration );
         Edge lane = new Edge(laneId,v1, v2, duration );
