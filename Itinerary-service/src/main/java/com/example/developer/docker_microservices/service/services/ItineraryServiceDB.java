@@ -11,39 +11,19 @@ import java.util.stream.Collectors;
 
 @Service
 public class ItineraryServiceDB implements ItineraryService {
-    private final ItineraryDao itineraryDAO;
+    private static ItineraryDao itineraryDAO;
 
     @Autowired
     public ItineraryServiceDB(ItineraryDao itineraryDAO) {
         this.itineraryDAO = itineraryDAO;
     }
 
-    /*
-    @Override
-    public List<String> getShortestItineraryByTime(int originalCityId)
-    {
-        List<String> result=new ArrayList<>();
-        List<ItineraryDto> itineraryDto=listItinerary();
-        int [][]graph=getItineraryGraphByFlightTime(itineraryDto);
-        List<Integer> list=getDestinationCityList(itineraryDto);
-        int size=itineraryDto.size();
-        for(int i=0;i<list.size();i++) {
-            int destinationCityId = list.get(i);
-            if(destinationCityId!=originalCityId) {
-                Vector<Integer> path = getShortestItineraryByTime(graph, size, originalCityId, destinationCityId);
-                result.add(path.toString());
-            }
-        }
-        return result;
-    }*/
 
     @Override
     public List<String> getShortestItineraryByTimeByDijkstra(String originalCityId)
     {
         List<String> result=new ArrayList<>();
-        List<ItineraryDto> itineraryDto=listItinerary();
-        Dijkstra.buildEdgesByTime(itineraryDto);
-        result=Dijkstra.convert(originalCityId);
+        result=Dijkstra.getInstance().convertByTime(originalCityId);
         return result;
     }
 
@@ -51,30 +31,9 @@ public class ItineraryServiceDB implements ItineraryService {
     public List<String> getShortestItineraryByConnectionByDijkstra(String originalCityId)
     {
         List<String> result=new ArrayList<>();
-        List<ItineraryDto> itineraryDto=listItinerary();
-        Dijkstra.buildEdgesByConnection(itineraryDto);
-        result=Dijkstra.convert(originalCityId);
+        result=Dijkstra.getInstance().convertByConnection(originalCityId);
         return result;
     }
-
-    /*
-    @Override
-    public List<String> getShortestItineraryByConnection(int originalCityId)
-    {
-        List<String> result=new ArrayList<>();
-        List<ItineraryDto> itineraryDto=listItinerary();
-        int [][]graph=getItineraryGraphByFlightConnection(itineraryDto);
-        List<Integer> list=getDestinationCityList(itineraryDto);
-        int size=itineraryDto.size();
-        for(int i=0;i<list.size();i++) {
-            int destinationCityId = list.get(i);
-            if(destinationCityId!=originalCityId) {
-                Vector<Integer> path = getShortestItineraryByConnection(graph, size, originalCityId, destinationCityId);
-                result.add(path.toString());
-            }
-        }
-        return result;
-    }*/
 
     private Vector<Integer> getShortestItineraryByTime(int [][]graph, int number,int originalCityId, int destinationCityId)
     {
@@ -169,8 +128,8 @@ public class ItineraryServiceDB implements ItineraryService {
         return originalCityIdList;
     }
 
-    @Override
-    public List<ItineraryDto> listItinerary() {
+    //@Override
+    public static List<ItineraryDto> listItinerary() {
         return itineraryDAO
                 .findAll()
                 .stream()
