@@ -21,11 +21,11 @@ Here are the examples:
 
 curl 'http://localhost:8080/itinerary/listitinerary/101' -H 'auth_token: token'
 
-["Connection","[101, 102]","[101, 102, 103]","[101, 102, 103, 104]","[101, 102, 106]","Time","[101, 102]","[101, 102, 103]","[101, 102, 103, 104]","[101, 102, 106]"]
+["Time","[101, 102, A]","[101, 102, B]","[101, 102]","[101, 102, B, 104]","Connection","[101, 102, A]","[101, 102, B]","[101, 102]","[101, 104]"]
 
-curl 'http://localhost:8080/itinerary/listitinerary/102' -H 'auth_token: token'
+curl 'http://localhost:8080/itinerary/listitinerary/B' -H 'auth_token: token'
 
-["Connection","[102, 103, 104, 101]","[102, 103]","[102, 103, 104]","[102, 106]","Time","[102, 103, 104, 101]","[102, 103]","[102, 103, 104]","[102, 106]"]
+["Time","[B, 104, 101, 102, A]","[B, 104, 101]","[B, 104, 101, 102]","[B, 104]","Connection","[B, 101, 102, A]","[B, 101]","[B, 101, 102]","[B, 104]"]
 
 2: The technology stack used in this project
 ============================================
@@ -35,18 +35,21 @@ Floyd Warshall Algorithm is used to compute the Shortest way(in time and in conn
 
 RestTemplate is used when the API in UI service(Itinerary-Rest) call API inbusiness service (Itinerary-Service).The RestTemplate is the central class within the Spring framework for executing synchronous HTTP requests on the client side.
 
-3: About the Floyd Warshall Algorithm
+3: About the Dijkstra Algorithm
 ============================================
 You could refer to this picture for the graph demo in this project:
 https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
 
-        itineraryDAO.save(new Itinerary(0,1,"10", "13"));
-        itineraryDAO.save(new Itinerary(1,0,"10", "18"));
-        itineraryDAO.save(new Itinerary(2,0,"10", "15"));
-        itineraryDAO.save(new Itinerary(0,3,"10", "17"));
-        itineraryDAO.save(new Itinerary(3,0,"10", "12"));
-        itineraryDAO.save(new Itinerary(1,2,"10", "12"));
-        itineraryDAO.save(new Itinerary(2,3,"10", "11"));
+        itineraryDAO.save(new Itinerary(101+"",102+"","10", "13"));
+        itineraryDAO.save(new Itinerary(102+"",101+"","10", "18"));
+        itineraryDAO.save(new Itinerary("B",101+"","10", "15"));
+        itineraryDAO.save(new Itinerary(101+"",104+"","10", "17"));
+        itineraryDAO.save(new Itinerary(104+"",101+"","10", "12"));
+        itineraryDAO.save(new Itinerary(102+"","B","10", "12"));
+        itineraryDAO.save(new Itinerary("B",104+"","10", "11"));
+        itineraryDAO.save(new Itinerary(102+"","A","10", "11"));
+
+
 
 4: To be enhanced in the future
 ============================================

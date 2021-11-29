@@ -10,15 +10,12 @@ import java.util.*;
 @RequestMapping("/itinerary")
 public class ItineraryController {
     private final ItineraryService itineraryService;
-
     public ItineraryController(ItineraryService itineraryService) {
         this.itineraryService = itineraryService;
     }
 
-
     public boolean checkCityId(String id)
     {
-        //int cityId = Integer.parseInt(Id);
         Set<String> originalCityList=itineraryService.getOriginalCityIdList();
         if(!originalCityList.contains(id) )
         {
@@ -35,7 +32,6 @@ public class ItineraryController {
             result.add("Invalid Original City Id");
             return  result;
         };
-        //int cityId=Integer.parseInt(id);
         List<String> shortestItineraryByConnection = itineraryService.getShortestItineraryByConnectionByDijkstra(id);
         for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
             result.add(shortestItineraryByConnection.get(i));
@@ -52,7 +48,6 @@ public class ItineraryController {
             result.add("Invalid Original City Id");
             return  result;
         };
-        //int cityId=Integer.parseInt(id);
         List<String> shortestItineraryByTime = itineraryService.getShortestItineraryByTimeByDijkstra(id);
         for (int i = 0; i < shortestItineraryByTime.size(); i++) {
             result.add(shortestItineraryByTime.get(i));
