@@ -64,12 +64,12 @@ public class ItineraryServiceDB implements ItineraryService {
         return itineraryDAO
                 .findAll()
                 .stream()
-                .map( classObj -> ItineraryDto
+                .map( itineraryObj -> ItineraryDto
                         .builder()
-                        .originalCityId(classObj.getOriginalCityId())
-                        .destinationCityId(classObj.getDestinationCityId())
-                        .departureTimeName(classObj.getDepartureTime())
-                        .arrivalTimeName(classObj.getArrivalTime())
+                        .originalCityId(itineraryObj.getOriginalCityId())
+                        .destinationCityId(itineraryObj.getDestinationCityId())
+                        .departureTimeName(itineraryObj.getDepartureTime())
+                        .arrivalTimeName(itineraryObj.getArrivalTime())
                         .build()
                 )
                 .collect(Collectors.toList());
