@@ -78,6 +78,7 @@ docker run --name Itinerary-Rest -p 8080:8080 -d --network mynetwork springio/cl
 ============================================
 
 http://localhost:8088/swagger-ui.html
+
 http://localhost:8080/swagger-ui.html
     
  
