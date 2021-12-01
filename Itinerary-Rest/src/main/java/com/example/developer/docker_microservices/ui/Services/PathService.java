@@ -17,11 +17,6 @@ public class PathService {
     @Resource
     private RestTemplate restTemplate;
 
-    public void PathServcie()
-    {
-
-    }
-
     public List<String> listItinerary(String url)
     {
         ResponseEntity<List<String>> listOfString= restTemplate
