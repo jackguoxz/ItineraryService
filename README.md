@@ -74,6 +74,10 @@ docker run --name  Itinerary-Service -p 8088:8088 -d --network mynetwork springi
 
 docker run --name Itinerary-Rest -p 8080:8080 -d --network mynetwork springio/client
 
+6: Provide API documentation , API Bluprint , swagger or similar
+============================================
 
+http://localhost:8088/swagger-ui.html
+http://localhost:8080/swagger-ui.html
     
  
