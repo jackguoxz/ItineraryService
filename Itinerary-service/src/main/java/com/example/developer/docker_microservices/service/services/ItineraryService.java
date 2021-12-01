@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface ItineraryService {
-    List<ItineraryDto> listItinerary();
+    //List<ItineraryDto> listItinerary();
     List<String> getShortestItineraryByTimeByDijkstra(String id);
     List<String> getShortestItineraryByConnectionByDijkstra(String id);
     Set<String> getOriginalCityIdList();

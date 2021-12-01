@@ -2,12 +2,15 @@ package com.example.developer.docker_microservices.service.controllers;
 
 
 import com.example.developer.docker_microservices.service.services.ItineraryService;
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+
 @RestController
 @RequestMapping("/itinerary")
+@Api(value = "test", description = "description")
 public class ItineraryController {
     private final ItineraryService itineraryService;
     public ItineraryController(ItineraryService itineraryService) {
@@ -23,6 +26,11 @@ public class ItineraryController {
         }
         return false;
     }
+
+    @ApiOperation(value="Get shortest itinerary by least number of connection")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="cityId",required=true,paramType="form"),
+    })
     @RequestMapping(value = "/getshortestitinerarybyconnection/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItineraryByConnection(@PathVariable String id){
@@ -39,6 +47,10 @@ public class ItineraryController {
         return result;
     }
 
+    @ApiOperation(value="Get shortest itinerary by least Time")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="cityId",required=true,paramType="form"),
+    })
     @RequestMapping(value = "/getshortestitinerarybytime/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItineraryByTime(@PathVariable String id){
@@ -55,6 +67,10 @@ public class ItineraryController {
         return result;
     }
 
+    @ApiOperation(value="Get Shortest itinerary by combination of least Time and least number of Connection")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="cityId",required=true,paramType="form"),
+    })
     @RequestMapping(value = "/listitinerary/dijkstra/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public List<String> getShortestItineraryByDijkstra(@PathVariable String id){

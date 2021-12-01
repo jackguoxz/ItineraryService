@@ -5,17 +5,44 @@ import java.util.*;
 
 import com.example.developer.docker_microservices.service.dtos.ItineraryDto;
 
+import static com.example.developer.docker_microservices.service.services.ItineraryServiceDB.listItinerary;
+
 public class Dijkstra {
-    private static List<Vertex> nodes;
-    private static List<Edge> edges;
+    private static List<Vertex> nodesByTime;
+    private static List<Edge> edgesByTime;
+    private static List<Vertex> nodesByConnection;
+    private static List<Edge> edgesByConnection;
+    private static Graph graphByTime;
+    private static Graph graphByConnection;
+    private static DijkstraAlgorithm dijkstraByTime;
+    private static DijkstraAlgorithm dijkstraByConnection;
+    private static final Dijkstra INSTANCE = new Dijkstra();
+
+    static
+    {
+        List<ItineraryDto> itineraryDto=listItinerary();
+        edgesByTime=buildEdgesByTime(itineraryDto);
+        edgesByConnection=buildEdgesByConnection(itineraryDto);
+        graphByTime= new Graph(nodesByTime, edgesByTime);
+        dijkstraByTime = new DijkstraAlgorithm(graphByTime);
+        graphByConnection = new Graph(nodesByConnection, edgesByConnection);
+        dijkstraByConnection = new DijkstraAlgorithm(graphByConnection);
+    }
+
+    private Dijkstra() {
+    }
+
+    public static Dijkstra getInstance() {
+        return INSTANCE;
+    }
 
     public static List<Edge> buildEdgesByTime(List<ItineraryDto> list)
     {
-        nodes = new ArrayList<Vertex>();
-        edges = new ArrayList<Edge>();
+        nodesByTime = new ArrayList<Vertex>();
+        edgesByTime = new ArrayList<Edge>();
         for (int i = 0; i < list.size(); i++) {
             Vertex location = new Vertex("" + i, "" + i);
-            nodes.add(location);
+            nodesByTime.add(location);
         }
 
         for(int i=0;i<list.size();i++)
@@ -25,49 +52,36 @@ public class Dijkstra {
             int flightTime=Integer.parseInt(arrivalTime)-Integer.parseInt(departureTime);
             String sourceLocNo=list.get(i).getOriginalCityId();
             String destLocNo=list.get(i).getDestinationCityId();
-            addLane("Edge_"+i,sourceLocNo,destLocNo,flightTime);
+            addLaneByTime("Edge_"+i,sourceLocNo,destLocNo,flightTime);
         }
-        return  edges;
+        return  edgesByTime;
     }
 
     public static List<Edge> buildEdgesByConnection(List<ItineraryDto> list)
     {
-        nodes = new ArrayList<Vertex>();
-        edges = new ArrayList<Edge>();
+        nodesByConnection = new ArrayList<Vertex>();
+        edgesByConnection = new ArrayList<Edge>();
         for (int i = 0; i < list.size(); i++) {
             Vertex location = new Vertex("" + i, "" + i);
-            nodes.add(location);
+            nodesByConnection.add(location);
         }
-
         for(int i=0;i<list.size();i++)
         {
             String sourceLocNo=list.get(i).getOriginalCityId();
             String destLocNo=list.get(i).getDestinationCityId();
-            addLane("Edge_"+i,sourceLocNo,destLocNo,1);
+            addLaneByConnection("Edge_"+i,sourceLocNo,destLocNo,1);
         }
-        return  edges;
+        return  edgesByConnection;
     }
 
-
-    public static List<Edge> buildEdges(int size)
-    {
-        nodes = new ArrayList<Vertex>();
-        edges = new ArrayList<Edge>();
-        for (int i = 0; i < size; i++) {
-            Vertex location = new Vertex("" + i, "" + i);
-            nodes.add(location);
-        }
-        return  edges;
-    }
-    public static List<String> convert(String start) {
+    public static List<String> convertByTime(String start) {
         List<String> result= new ArrayList<>();
-        Graph graph = new Graph(nodes, edges);
-        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         LinkedList<Vertex> path = new LinkedList<>();
         Set<String> destinationCityId=new HashSet<>();
-        for(int i=0;i<edges.size();i++)
+
+        for(int i=0;i<edgesByTime.size();i++)
         {
-            String id=edges.get(i).getDestination().getName();
+            String id=edgesByTime.get(i).getDestination().getName();
             destinationCityId.add(id);
         }
 
@@ -75,8 +89,8 @@ public class Dijkstra {
         for(String id: destinationCityId)
         {
             Vertex dest=new Vertex(id,id);
-            dijkstra.execute(source);
-            path = dijkstra.getPath(dest);
+            dijkstraByTime.execute(source);
+            path = dijkstraByTime.getPath(dest);
             try {
                 if(path!=null) {
                     result.add(path.toString());
@@ -85,16 +99,51 @@ public class Dijkstra {
             {
                 System.out.println(e.toString());
             }
+
         }
         return  result;
-
     }
 
-    private static void addLane(String laneId, String sourceLocNo, String destLocNo,
+    public static List<String> convertByConnection(String start) {
+        List<String> result= new ArrayList<>();
+        LinkedList<Vertex> path = new LinkedList<>();
+        Set<String> destinationCityId=new HashSet<>();
+        for(int i=0;i<edgesByConnection.size();i++)
+        {
+            String id=edgesByConnection.get(i).getDestination().getName();
+            destinationCityId.add(id);
+        }
+        Vertex source=new Vertex(start,start);
+        for(String id: destinationCityId)
+        {
+            Vertex dest=new Vertex(id,id);
+            dijkstraByConnection.execute(source);
+            path = dijkstraByConnection.getPath(dest);
+            try {
+                if(path!=null) {
+                    result.add(path.toString());
+                }
+            }catch (Exception e)
+            {
+                System.out.println(e.toString());
+            }
+
+        }
+        return  result;
+    }
+    private static void addLaneByTime(String laneId, String sourceLocNo, String destLocNo,
                          int duration) {
         Vertex v1=new Vertex(sourceLocNo,sourceLocNo);
         Vertex v2=new Vertex(destLocNo,destLocNo);
         Edge lane = new Edge(laneId,v1, v2, duration );
-        edges.add(lane);
+        edgesByTime.add(lane);
+    }
+
+    private static void addLaneByConnection(String laneId, String sourceLocNo, String destLocNo,
+                                      int duration) {
+        Vertex v1=new Vertex(sourceLocNo,sourceLocNo);
+        Vertex v2=new Vertex(destLocNo,destLocNo);
+        Edge lane = new Edge(laneId,v1, v2, duration );
+        edgesByConnection.add(lane);
     }
 }

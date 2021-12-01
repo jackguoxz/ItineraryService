@@ -1,5 +1,6 @@
 package com.example.developer.docker_microservices.ui.controller;
 
+import com.example.developer.docker_microservices.ui.Services.PathService;
 import com.example.developer.docker_microservices.ui.auth.Auth;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.expression.Maps;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,10 +28,16 @@ public class ItineraryController {
 
     private final RestTemplate restTemplate;
     private final String serviceHost;
+    //private PathService pathService;
 
-    public ItineraryController(RestTemplate restTemplate, @Value("${service.host}") String serviceHost) {
+    private final PathService pathService;
+
+
+    public ItineraryController(RestTemplate restTemplate, @Value("${service.host}") String serviceHost,PathService pathService) {
         this.restTemplate = restTemplate;
         this.serviceHost = serviceHost;
+        this.pathService=pathService;
+
     }
 
     @RequestMapping("")
@@ -41,9 +49,8 @@ public class ItineraryController {
     @GetMapping("/itinerary/listitinerary/{id}")
     public ResponseEntity<List<String>> listItinerary(@PathVariable String id){
         String url="http://"+ serviceHost +"/itinerary/listitinerary/dijkstra/"+id;
-        return restTemplate
-                .exchange(url, HttpMethod.GET, null,
-                        new ParameterizedTypeReference<List<String>>() {});
+        ResponseEntity<List<String>> result=ResponseEntity.ok(pathService.listItinerary(url,id));
+        return  result;
 
     }
 

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ItineraryServiceDB implements ItineraryService {
-    private final ItineraryDao itineraryDAO;
+    private static ItineraryDao itineraryDAO;
 
     @Autowired
     public ItineraryServiceDB(ItineraryDao itineraryDAO) {
@@ -23,9 +23,7 @@ public class ItineraryServiceDB implements ItineraryService {
     public List<String> getShortestItineraryByTimeByDijkstra(String originalCityId)
     {
         List<String> result=new ArrayList<>();
-        List<ItineraryDto> itineraryDto=listItinerary();
-        Dijkstra.buildEdgesByTime(itineraryDto);
-        result=Dijkstra.convert(originalCityId);
+        result=Dijkstra.getInstance().convertByTime(originalCityId);
         return result;
     }
 
@@ -33,12 +31,9 @@ public class ItineraryServiceDB implements ItineraryService {
     public List<String> getShortestItineraryByConnectionByDijkstra(String originalCityId)
     {
         List<String> result=new ArrayList<>();
-        List<ItineraryDto> itineraryDto=listItinerary();
-        Dijkstra.buildEdgesByConnection(itineraryDto);
-        result=Dijkstra.convert(originalCityId);
+        result=Dijkstra.getInstance().convertByConnection(originalCityId);
         return result;
     }
-
 
     private Vector<Integer> getShortestItineraryByTime(int [][]graph, int number,int originalCityId, int destinationCityId)
     {
@@ -70,6 +65,55 @@ public class ItineraryServiceDB implements ItineraryService {
         }
         return destinationCityList;
     }
+    /*
+    private int[][] getItineraryGraphByFlightTime(List<ItineraryDto> itineraryDto)
+    {
+
+        final int size = itineraryDto.size();
+        final int INF = (int) 1e7;
+        int [][]itineraryMap = new int[size][size];
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++)
+            {
+                if(j==i)
+                    itineraryMap[i][j]=0;
+                else
+                    itineraryMap[i][j]=INF;
+            }
+        }
+
+        for (int i = 0; i < itineraryDto.size(); i++) {
+            ItineraryDto dto = itineraryDto.get(i);
+            int originalCityId=dto.getOriginalCityId();
+            int destinationCityId=dto.getDestinationCityId();
+            String departureTime =dto.getDepartureTimeName();
+            String arrivalTime=dto.getArrivalTimeName();
+            int flightTime=Integer.parseInt(arrivalTime)-Integer.parseInt(departureTime);
+            itineraryMap[originalCityId][destinationCityId]=flightTime;
+        }
+        return itineraryMap;
+    }*/
+
+    /*
+    private int[][] getItineraryGraphByFlightConnection(List<ItineraryDto> itineraryDto)
+    {
+        final int size = itineraryDto.size();
+        final int INF = (int) 1e7;
+        int [][]itineraryMap = new int[size][size];
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++)
+            {
+                itineraryMap[i][j]=INF;
+            }
+        }
+        for (int i = 0; i < itineraryDto.size(); i++) {
+            ItineraryDto dto = itineraryDto.get(i);
+            int originalCityId=dto.getOriginalCityId();
+            int destinationCityId=dto.getDestinationCityId();
+            itineraryMap[originalCityId][destinationCityId]=1;
+        }
+        return itineraryMap;
+    }*/
 
     @Override
     public Set<String> getOriginalCityIdList(){
@@ -84,8 +128,8 @@ public class ItineraryServiceDB implements ItineraryService {
         return originalCityIdList;
     }
 
-    @Override
-    public List<ItineraryDto> listItinerary() {
+    //@Override
+    public static List<ItineraryDto> listItinerary() {
         return itineraryDAO
                 .findAll()
                 .stream()
