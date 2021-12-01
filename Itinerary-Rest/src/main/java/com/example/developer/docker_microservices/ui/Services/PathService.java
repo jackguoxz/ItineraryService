@@ -22,7 +22,7 @@ public class PathService {
 
     }
 
-    public List<String> listItinerary(String url,String id)
+    public List<String> listItinerary(String url)
     {
         ResponseEntity<List<String>> listOfString= restTemplate
                 .exchange(url, HttpMethod.GET, null,
