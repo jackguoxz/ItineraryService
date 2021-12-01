@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ItineraryDto {
     private long id;
-    private int originalCityId;
-    private int destinationCityId;
+    private String originalCityId;
+    private String destinationCityId;
     private String departureTimeName;
     private String arrivalTimeName;
 }

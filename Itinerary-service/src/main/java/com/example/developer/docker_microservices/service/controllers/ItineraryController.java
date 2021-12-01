@@ -1,12 +1,15 @@
 package com.example.developer.docker_microservices.service.controllers;
 
 
+import com.example.developer.docker_microservices.service.dtos.ItineraryDto;
 import com.example.developer.docker_microservices.service.services.ItineraryService;
+import com.example.developer.docker_microservices.service.services.ItineraryServiceDB;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+import static com.example.developer.docker_microservices.service.services.ItineraryServiceDB.listItinerary;
 
 @RestController
 @RequestMapping("/itinerary")
@@ -15,6 +18,12 @@ public class ItineraryController {
     private final ItineraryService itineraryService;
     public ItineraryController(ItineraryService itineraryService) {
         this.itineraryService = itineraryService;
+    }
+
+    @RequestMapping(value = "/getitinerarydto", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public List<ItineraryDto> getItineraryDto(){
+        return ItineraryServiceDB.listItinerary();
     }
 
     public boolean checkCityId(String id)

@@ -2,6 +2,7 @@ package com.example.developer.docker_microservices.ui.controller;
 
 import com.example.developer.docker_microservices.ui.Services.PathService;
 import com.example.developer.docker_microservices.ui.auth.Auth;
+import com.example.developer.docker_microservices.ui.dto.ItineraryDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -40,7 +41,6 @@ public class ItineraryController {
         this.restTemplate = restTemplate;
         this.serviceHost = serviceHost;
         this.pathService=pathService;
-
     }
 
     @RequestMapping("")
@@ -61,6 +61,33 @@ public class ItineraryController {
 
     }
 
+    @ApiOperation(value="Get Shortest itinerary by least number of Connection")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="cityId",required=true,paramType="form"),
+    })
+    @ResponseBody
+    @GetMapping("/itinerary/getshortestitinerarybyconnection/{id}")
+    public ResponseEntity<List<String>> getshortestitinerarybyconnection(@PathVariable String id){
+        String url ="http://"+ serviceHost +"/itinerary/getitinerarydto";
+        List<ItineraryDto> itineraryDto = pathService.getItineraryDto(url);
+        List<String> itineraryListByConnection=pathService.getShortestItineraryByConnection(id,itineraryDto);
+        ResponseEntity<List<String>> result=ResponseEntity.ok(itineraryListByConnection);
+        return  result;
+    }
+
+    @ApiOperation(value="Get Shortest itinerary by least Time")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="cityId",required=true,paramType="form"),
+    })
+    @ResponseBody
+    @GetMapping("/itinerary/getshortestitinerarybytime/{id}")
+    public ResponseEntity<List<String>> getshortestitinerarybytime(@PathVariable String id){
+        String url ="http://"+ serviceHost +"/itinerary/getitinerarydto";
+        List<ItineraryDto> itineraryDto = pathService.getItineraryDto(url);
+        List<String> itineraryListByConnection=pathService.getShortestItineraryByTime(id,itineraryDto);
+        ResponseEntity<List<String>> result=ResponseEntity.ok(itineraryListByConnection);
+        return  result;
+    }
 
 
 }
