@@ -27,7 +27,7 @@ import java.util.Map;
 @Auth
 @Controller
 @RequestMapping("/")
-@Api(value = "test", description = "description")
+@Api(value = "Itinerary Controller", description = "Itinerary Controller in Path Service")
 public class ItineraryController {
     private final RestTemplate restTemplate;
     private final String serviceHost;

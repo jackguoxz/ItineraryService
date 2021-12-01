@@ -5,14 +5,11 @@ import com.example.developer.docker_microservices.service.services.ItineraryServ
 import com.example.developer.docker_microservices.service.services.ItineraryServiceDB;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
-
-
 
 @RestController
 @RequestMapping("/itinerary")
-@Api(value = "test", description = "description")
+@Api(value = "Itinerary Controller", description = "Controllers in Itinerary Service")
 public class ItineraryController {
     private final ItineraryService itineraryService;
     public ItineraryController(ItineraryService itineraryService) {
