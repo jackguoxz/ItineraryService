@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-import static com.example.developer.docker_microservices.service.services.ItineraryServiceDB.listItinerary;
 
 @RestController
 @RequestMapping("/itinerary")

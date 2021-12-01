@@ -29,11 +29,8 @@ import java.util.Map;
 @RequestMapping("/")
 @Api(value = "test", description = "description")
 public class ItineraryController {
-
     private final RestTemplate restTemplate;
     private final String serviceHost;
-    //private PathService pathService;
-
     private final PathService pathService;
 
 
@@ -55,8 +52,15 @@ public class ItineraryController {
     @ResponseBody
     @GetMapping("/itinerary/listitinerary/{id}")
     public ResponseEntity<List<String>> listItinerary(@PathVariable String id){
-        String url="http://"+ serviceHost +"/itinerary/listitinerary/dijkstra/"+id;
-        ResponseEntity<List<String>> result=ResponseEntity.ok(pathService.listItinerary(url));
+        String url ="http://"+ serviceHost +"/itinerary/getitinerarydto";
+        List<ItineraryDto> itineraryDto = pathService.getItineraryDto(url);
+        if(pathService.checkCityId(id,itineraryDto))
+        {
+            List<String> result=new ArrayList<>();
+            result.add("Invalid Original City Id");
+            return  ResponseEntity.ok(result);
+        };
+        ResponseEntity<List<String>> result=ResponseEntity.ok(pathService.listItinerary(id,itineraryDto));
         return  result;
 
     }
@@ -70,6 +74,12 @@ public class ItineraryController {
     public ResponseEntity<List<String>> getshortestitinerarybyconnection(@PathVariable String id){
         String url ="http://"+ serviceHost +"/itinerary/getitinerarydto";
         List<ItineraryDto> itineraryDto = pathService.getItineraryDto(url);
+        if(pathService.checkCityId(id,itineraryDto))
+        {
+            List<String> result=new ArrayList<>();
+            result.add("Invalid Original City Id");
+            return  ResponseEntity.ok(result);
+        };
         List<String> itineraryListByConnection=pathService.getShortestItineraryByConnection(id,itineraryDto);
         ResponseEntity<List<String>> result=ResponseEntity.ok(itineraryListByConnection);
         return  result;
@@ -84,10 +94,14 @@ public class ItineraryController {
     public ResponseEntity<List<String>> getshortestitinerarybytime(@PathVariable String id){
         String url ="http://"+ serviceHost +"/itinerary/getitinerarydto";
         List<ItineraryDto> itineraryDto = pathService.getItineraryDto(url);
+        if(pathService.checkCityId(id,itineraryDto))
+        {
+            List<String> result=new ArrayList<>();
+            result.add("Invalid Original City Id");
+            return  ResponseEntity.ok(result);
+        };
         List<String> itineraryListByConnection=pathService.getShortestItineraryByTime(id,itineraryDto);
         ResponseEntity<List<String>> result=ResponseEntity.ok(itineraryListByConnection);
         return  result;
     }
-
-
 }

@@ -27,18 +27,14 @@ public class PathService implements PathServiceInterface {
     @Override
     public List<String> getShortestItineraryByTime(String originalCityId,List<ItineraryDto> itineraryDto)
     {
-        List<String> result=new ArrayList<>();
         Dijkstra dijkstra=new Dijkstra(itineraryDto);
-        result= dijkstra.convertByTime(originalCityId);
-        return result;
+        return dijkstra.convertByTime(originalCityId);
     }
 
     @Override
     public List<String> getShortestItineraryByConnection(String originalCityId,List<ItineraryDto> itineraryDto) {
-        List<String> result = new ArrayList<>();
         Dijkstra dijkstra=new Dijkstra(itineraryDto);
-        result = dijkstra.convertByConnection(originalCityId);
-        return result;
+        return dijkstra.convertByConnection(originalCityId);
     }
 
     public Set<String> getDestinationCityList(List<ItineraryDto> itineraryDto)
@@ -63,6 +59,16 @@ public class PathService implements PathServiceInterface {
         return originalCityIdList;
     }
 
+    public boolean checkCityId(String id,List<ItineraryDto> itineraryDto)
+    {
+        Set<String> originalCityList=getOriginalCityIdList(itineraryDto);
+        if(!originalCityList.contains(id) )
+        {
+            return  true;
+        }
+        return false;
+    }
+
     public  List<ItineraryDto> getItineraryDto(String url)
     {
         ResponseEntity<List<ItineraryDto>> itineraryDtoList= restTemplate
@@ -72,12 +78,19 @@ public class PathService implements PathServiceInterface {
         return result;
 
     }
-    public List<String> listItinerary(String url)
+    public List<String> listItinerary(String originalCityId,List<ItineraryDto> itineraryDto)
     {
-        ResponseEntity<List<String>> listOfString= restTemplate
-                .exchange(url, HttpMethod.GET, null,
-                        new ParameterizedTypeReference<List<String>>() {});
-        List<String> result = listOfString.getBody();
+        List<String> result=new ArrayList<>();
+        result.add("Time");
+        List<String> shortestItineraryByTime=getShortestItineraryByTime(originalCityId,itineraryDto);
+        for (int i = 0; i < shortestItineraryByTime.size(); i++) {
+            result.add(shortestItineraryByTime.get(i));
+        }
+        result.add("Connection");
+        List<String> shortestItineraryByConnection=getShortestItineraryByConnection(originalCityId,itineraryDto);
+        for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
+            result.add(shortestItineraryByConnection.get(i));
+        }
         return result;
     }
 }

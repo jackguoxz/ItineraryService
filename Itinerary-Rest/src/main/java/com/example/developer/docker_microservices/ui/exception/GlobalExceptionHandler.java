@@ -26,13 +26,14 @@ public class GlobalExceptionHandler
     @ResponseBody
     @ExceptionHandler(InvalidParameterException.class)
     public String invalidParameterException(InvalidParameterException ex){
+        log.error("This is a BAD REQUEST", ex);
         return "This is a BAD REQUEST";
     }
 
 
     @ResponseBody
     @ExceptionHandler(PermissionException.class)
-    public String invalidParameterException(PermissionException ex){
+    public String invalidParameterException(PermissionException ex) {
         return "This is a BAD Permission";
     }
 }
