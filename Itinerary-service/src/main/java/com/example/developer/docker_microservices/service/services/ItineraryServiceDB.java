@@ -51,13 +51,13 @@ public class ItineraryServiceDB implements ItineraryService {
     public Set<String> getDestinationCityIdList()
     {
         List<ItineraryDto> itineraryDto=listItinerary();
-        Set<String> destinationCityList=new HashSet<>();
+        Set<String> destinationCityIdList=new HashSet<>();
         for (int i = 0; i < itineraryDto.size(); i++) {
             ItineraryDto dto = itineraryDto.get(i);
             String destinationCityId=dto.getDestinationCityId();
-            destinationCityList.add(destinationCityId);
+            destinationCityIdList.add(destinationCityId);
         }
-        return destinationCityList;
+        return destinationCityIdList;
     }
 
     @Override

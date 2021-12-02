@@ -44,7 +44,13 @@ public class ItineraryController {
     @RequestMapping(value = "/getitinerarybytime", method = RequestMethod.GET)
     @ResponseBody
     public String getItineraryByTime(@RequestParam(value="departurecity")String departureCityId,@RequestParam(value="arrivalcity")String arrivalCityId){
-        String result=itineraryService.getShortestItineraryByTime(departureCityId,arrivalCityId);
+        String result= "";
+        try {
+             result = itineraryService.getShortestItineraryByTime(departureCityId, arrivalCityId);
+        }catch (Exception e)
+        {
+            System.out.println(e.toString());
+        }
         return result;
     }
 
