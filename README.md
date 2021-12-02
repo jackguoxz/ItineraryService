@@ -39,7 +39,15 @@ http://localhost:8080/itinerary/listitinerary/101
 
 http://localhost:8080/itinerary/getshortestitinerary/101
 
-2: The technology stack used in this project
+2: The Service design logc(for the two microservice ItineraryServiceDB and PathService)
+============================================
+
+https://github.com/jackguoxz/ItineraryService/blob/main/Service%20Design%20Logic.png
+
+To create a service that given an origin city will return a list of itineraries , one based in the least number of connections and the second   based in the least time. There are two way to do this：One is to put business logic PathService, ItineraryServiceDB needs to pass DTO to it，only one invoke is needed；Another way is to put the business logic ItineraryServiceDB， PathService need to call API in ItineraryServiceDB multiple times（String getShortestItineraryByTime(String originalCityId, String arrivalCityID) and String getShortestItineraryByConnection(String originalCityId, String arrivalCityID)）
+
+
+3: The technology stack used in this project
 ============================================
 Spring Boot is used to build a microservice. The reason to use Spring Boot is: Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
 
@@ -47,7 +55,7 @@ Floyd Warshall Algorithm is used to compute the Shortest way(in time and in conn
 
 RestTemplate is used when the API in UI service(Itinerary-Rest) call API inbusiness service (Itinerary-Service).The RestTemplate is the central class within the Spring framework for executing synchronous HTTP requests on the client side.
 
-3: About the Dijkstra Algorithm
+4: About the Dijkstra Algorithm
 ============================================
 You could refer to this picture for the graph demo in this project:
 https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
@@ -63,7 +71,7 @@ https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
 
 
 
-4: To be enhanced in the future
+5: To be enhanced in the future
 ============================================
 
 - Basic authentication is used for the API security(hard coding), we should consider use HTTPS or OAuth. 
@@ -71,7 +79,7 @@ https://github.com/jackguoxz/ItineraryService/blob/main/graph.jpeg
 - Circuit Breaker and Service Downgrade is not implemented yet, we should consider use Hystrix,  Hystrix is a library from Netflix,it isolates the points of access between the services, stops cascading failures across them and provides the fallback options.
 - Logging/Metrics, Dashboard and Alarm should be added.
 
-5: How to Run each microservice in a different docker container linking them with any docker technology.
+6: How to Run each microservice in a different docker container linking them with any docker technology.
 ============================================
 
 Add one line in this file Itinerary-Rest/src/main/resources/application.properties(https://github.com/jackguoxz/ItineraryService/tree/main/Itinerary-Rest/src/main/resources/application.properties) 
@@ -86,11 +94,13 @@ docker run --name  Itinerary-Service -p 8088:8088 -d --network mynetwork springi
 
 docker run --name Itinerary-Rest -p 8080:8080 -d --network mynetwork springio/client
 
-6: Provide API documentation , API Bluprint , swagger or similar
+7: Provide API documentation , API Bluprint , swagger or similar
 ============================================
 
 http://localhost:8088/swagger-ui.html
 
 http://localhost:8080/swagger-ui.html
+
+
     
  
