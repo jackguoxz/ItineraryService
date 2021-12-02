@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Auth
 @Service
@@ -76,6 +73,76 @@ public class PathService implements PathServiceInterface {
                         new ParameterizedTypeReference<List<ItineraryDto>>() {});
         List<ItineraryDto> result = itineraryDtoList.getBody();
         return result;
+
+    }
+
+    public  List<String> getShortestItinerary(String id,String url,List<ItineraryDto> itineraryDto)
+    {
+        List<String> result=new ArrayList<>();
+        List<String> shortestItineraryByTime=getShortestItineraryByTime(id,url,itineraryDto);
+        List<String> shortestItineraryByConnection=getShortestItineraryByTime(id,url,itineraryDto);
+        result.add("Time");
+        for (int i = 0; i < shortestItineraryByTime.size(); i++) {
+            result.add(shortestItineraryByTime.get(i));
+        }
+        result.add("Connection");
+        for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
+            result.add(shortestItineraryByConnection.get(i));
+        }
+        return result;
+
+    }
+
+
+    public  List<String> getShortestItineraryByTime(String departureCity,String url,List<ItineraryDto> itineraryDto)
+    {
+        Set<String> arrivalCity=getDestinationCityList(itineraryDto);
+        List<String> result =new ArrayList<>();
+        try {
+            for (String id : arrivalCity) {
+                result.add(getShortestItineraryByTime(departureCity,id, url));
+            }
+        }catch (Exception e)
+        {
+            System.out.print(e.toString());
+        }
+
+        return result;
+    }
+
+    public  List<String> getShortestItineraryByConnection(String departureCity,String url,List<ItineraryDto> itineraryDto)
+    {
+        Set<String> arrivalCity=getDestinationCityList(itineraryDto);
+        List<String> result =new ArrayList<>();
+        for(String id: arrivalCity)
+        {
+            result.add(getShortestItineraryByConnection(departureCity,id,url));
+        }
+        return result;
+    }
+
+
+    public  String getShortestItineraryByTime(String departureCity,String arrivalCity,String url)
+    {
+        Map<String,String> map = new HashMap();
+        map.put("departurecity",departureCity);
+        map.put("arrivalcity",arrivalCity);
+        ResponseEntity<String> result= restTemplate
+                .exchange(url, HttpMethod.GET, null,
+                        new ParameterizedTypeReference<String>() {},map);
+        return result.getBody();
+
+    }
+
+    public  String getShortestItineraryByConnection(String departureCity,String arrivalCity,String url)
+    {
+        Map<String,String> map = new HashMap();
+        map.put("departurecity",departureCity);
+        map.put("arrivalcity",arrivalCity);
+        ResponseEntity<String> result= restTemplate
+                .exchange(url, HttpMethod.GET, null,
+                        new ParameterizedTypeReference<String>() {},map);
+        return result.getBody();
 
     }
     public List<String> listItinerary(String originalCityId,List<ItineraryDto> itineraryDto)

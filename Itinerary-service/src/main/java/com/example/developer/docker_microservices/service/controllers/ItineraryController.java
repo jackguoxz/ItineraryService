@@ -5,6 +5,10 @@ import com.example.developer.docker_microservices.service.services.ItineraryServ
 import com.example.developer.docker_microservices.service.services.ItineraryServiceDB;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import java.net.CacheRequest;
 import java.util.*;
 
 @RestController
@@ -21,6 +25,27 @@ public class ItineraryController {
     @ResponseBody
     public List<ItineraryDto> getItineraryDto(){
         return ItineraryServiceDB.listItinerary();
+    }
+
+    @RequestMapping(value = "/getitinerarybyconnection", method = RequestMethod.GET)
+    @ResponseBody
+    public String getItineraryByConnection(@RequestParam(value="departurecity")String departureCityId,@RequestParam(value="arrivalcity")String arrivalCityId){
+        String result= "";
+        try {
+            result=itineraryService.getShortestItineraryByConnection(departureCityId,arrivalCityId);
+        } catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
+
+        return result;
+    }
+
+    @RequestMapping(value = "/getitinerarybytime", method = RequestMethod.GET)
+    @ResponseBody
+    public String getItineraryByTime(@RequestParam(value="departurecity")String departureCityId,@RequestParam(value="arrivalcity")String arrivalCityId){
+        String result=itineraryService.getShortestItineraryByTime(departureCityId,arrivalCityId);
+        return result;
     }
 
 }

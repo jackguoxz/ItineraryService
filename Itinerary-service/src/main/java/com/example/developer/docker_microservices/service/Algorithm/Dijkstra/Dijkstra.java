@@ -104,6 +104,22 @@ public class Dijkstra {
         return  result;
     }
 
+    public static String convertByTime(String start,String end) {
+        List<String> result= new ArrayList<>();
+        LinkedList<Vertex> path = new LinkedList<>();
+        Vertex source=new Vertex(start,start);
+        Vertex dest=new Vertex(end,end);
+        dijkstraByTime.execute(source);
+        path = dijkstraByTime.getPath(dest);
+        if(path!=null){
+            return  path.toString();
+        }else
+        {
+            return "";
+        }
+
+    }
+
     public static List<String> convertByConnection(String start) {
         List<String> result= new ArrayList<>();
         LinkedList<Vertex> path = new LinkedList<>();
@@ -131,6 +147,23 @@ public class Dijkstra {
         }
         return  result;
     }
+
+
+    public static String convertByConnection(String start,String end) {
+        List<String> result= new ArrayList<>();
+        LinkedList<Vertex> path = new LinkedList<>();
+        Vertex source=new Vertex(start,start);
+        Vertex dest=new Vertex(end,end);
+        dijkstraByConnection.execute(source);
+        path = dijkstraByConnection.getPath(dest);
+        if(path!=null){
+            return  path.toString();
+        }else
+        {
+            return "";
+        }
+    }
+
     private static void addLaneByTime(String laneId, String sourceLocNo, String destLocNo,
                          int duration) {
         Vertex v1=new Vertex(sourceLocNo,sourceLocNo);

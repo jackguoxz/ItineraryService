@@ -20,7 +20,7 @@ public class ItineraryServiceDB implements ItineraryService {
 
 
     @Override
-    public List<String> getShortestItineraryByTimeByDijkstra(String originalCityId)
+    public List<String> getShortestItineraryByTime(String originalCityId)
     {
         List<String> result=new ArrayList<>();
         result=Dijkstra.getInstance().convertByTime(originalCityId);
@@ -28,11 +28,24 @@ public class ItineraryServiceDB implements ItineraryService {
     }
 
     @Override
-    public List<String> getShortestItineraryByConnectionByDijkstra(String originalCityId)
+    public List<String> getShortestItineraryByConnection(String originalCityId)
     {
         List<String> result=new ArrayList<>();
         result=Dijkstra.getInstance().convertByConnection(originalCityId);
         return result;
+    }
+
+    @Override
+    public String getShortestItineraryByTime(String originalCityId, String arrivalCityID)
+    {
+        return Dijkstra.getInstance().convertByTime(originalCityId,arrivalCityID);
+    }
+
+    @Override
+    public String getShortestItineraryByConnection(String originalCityId, String arrivalCityID)
+    {
+
+        return Dijkstra.getInstance().convertByConnection(originalCityId,arrivalCityID);
     }
 
     public Set<String> getDestinationCityList(List<ItineraryDto> itineraryDto)
