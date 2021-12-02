@@ -44,7 +44,7 @@ http://localhost:8080/itinerary/getshortestitinerary/101
 
 https://github.com/jackguoxz/ItineraryService/blob/main/Service%20Design%20Logic.png
 
-To create a service that given an origin city will return a list of itineraries , one based in the least number of connections and the second   based in the least time. There are two way to do this：One is to put business logic PathService, ItineraryServiceDB needs to pass DTO to it，only one invoke is needed；Another way is to put the business logic ItineraryServiceDB， PathService need to call API in ItineraryServiceDB multiple times（String getShortestItineraryByTime(String originalCityId, String arrivalCityID) and String getShortestItineraryByConnection(String originalCityId, String arrivalCityID)）
+To create a service that given an origin city will return a list of itineraries , one based in the least number of connections and the second   based in the least time. There are two way to do this：One is to put business logic in PathService, ItineraryServiceDB needs to pass DTO to it，only one invoke is needed；Another way is to put the business logic ItineraryServiceDB， PathService need to call API in ItineraryServiceDB multiple times（String getShortestItineraryByTime(String originalCityId, String arrivalCityID) and String getShortestItineraryByConnection(String originalCityId, String arrivalCityID)）
 
 
 3: The technology stack used in this project
