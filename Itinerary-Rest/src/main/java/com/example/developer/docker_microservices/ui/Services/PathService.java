@@ -45,7 +45,8 @@ public class PathService implements PathServiceInterface {
         return destinationCityList;
     }
 
-    public Set<String> getOriginalCityIdList(List<ItineraryDto> itineraryDto){
+    public Set<String> getOriginalCityIdList(List<ItineraryDto> itineraryDto)
+    {
         Set originalCityIdList = new HashSet();
         for(int i=0;i<itineraryDto.size();i++)
         {

@@ -123,7 +123,7 @@ public class ItineraryController {
         String urlGetItineraryByTime ="http://"+ serviceHost +"/itinerary/getitinerarybytime?departurecity={departurecity}&arrivalcity={arrivalcity}";
         List<String> shortestItineraryByTime =pathService.getShortestItineraryByTime(id,urlGetItineraryByTime,itineraryDto);
         String urlGetItineraryByConnection ="http://"+ serviceHost +"/itinerary/getitinerarybyconnection?departurecity={departurecity}&arrivalcity={arrivalcity}";
-        List<String> shortestItineraryByConnection =pathService.getShortestItineraryByTime(id,urlGetItineraryByConnection,itineraryDto);
+        List<String> shortestItineraryByConnection =pathService.getShortestItineraryByConnection(id,urlGetItineraryByConnection,itineraryDto);
         result.add("Time");
         for (int i = 0; i < shortestItineraryByTime.size(); i++) {
             if(shortestItineraryByTime.get(i)!=null) {

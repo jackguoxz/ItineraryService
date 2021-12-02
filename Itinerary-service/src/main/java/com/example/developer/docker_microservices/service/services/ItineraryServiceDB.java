@@ -61,7 +61,8 @@ public class ItineraryServiceDB implements ItineraryService {
     }
 
     @Override
-    public Set<String> getOriginalCityIdList(){
+    public Set<String> getOriginalCityIdList()
+    {
         Set originalCityIdList = new HashSet();
         List<ItineraryDto> itineraryDto=listItinerary();
         for(int i=0;i<itineraryDto.size();i++)
