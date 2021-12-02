@@ -105,7 +105,6 @@ public class Dijkstra {
     }
 
     public static String convertByTime(String start,String end) {
-        List<String> result= new ArrayList<>();
         LinkedList<Vertex> path = new LinkedList<>();
         Vertex source=new Vertex(start,start);
         Vertex dest=new Vertex(end,end);
@@ -150,8 +149,7 @@ public class Dijkstra {
 
 
     public static String convertByConnection(String start,String end) {
-        List<String> result= new ArrayList<>();
-        LinkedList<Vertex> path = new LinkedList<>();
+        LinkedList<Vertex> path;
         Vertex source=new Vertex(start,start);
         Vertex dest=new Vertex(end,end);
         dijkstraByConnection.execute(source);

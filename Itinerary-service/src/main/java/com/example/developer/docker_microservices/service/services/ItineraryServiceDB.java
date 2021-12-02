@@ -48,7 +48,7 @@ public class ItineraryServiceDB implements ItineraryService {
         return Dijkstra.getInstance().convertByConnection(originalCityId,arrivalCityID);
     }
 
-    public Set<String> getDestinationCityList()
+    public Set<String> getDestinationCityIdList()
     {
         List<ItineraryDto> itineraryDto=listItinerary();
         Set<String> destinationCityList=new HashSet<>();
