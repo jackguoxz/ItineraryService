@@ -32,6 +32,13 @@ curl 'http://localhost:8080/itinerary/getshortestitinerary/101' -H 'auth_token: 
 ["Time","[101, 102, A]","[101, 102, B]","[101, 102]","[101, 102, B, 104]","Connection","[101, 102, A]","[101, 102, B]","[101, 102]","[101, 104]"]
 
 
+Note:
+
+Below two API have the same function: the difference is listitinerary only need to call Itinerary-Service once, getshortestitinerary need to call getshortestitinerary mulitple time
+
+http://localhost:8080/itinerary/listitinerary/101
+
+http://localhost:8080/itinerary/getshortestitinerary/101
 
 2: The technology stack used in this project
 ============================================
