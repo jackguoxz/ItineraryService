@@ -39,7 +39,7 @@ http://localhost:8080/itinerary/listitinerary/101
 
 http://localhost:8080/itinerary/getshortestitinerary/101
 
-2: The Service design logc(for the two microservice ItineraryServiceDB and PathService)
+2: The Service design logic(for the two microservice ItineraryServiceDB and PathService)
 ============================================
 
 https://github.com/jackguoxz/ItineraryService/blob/main/Service%20Design%20Logic.png
