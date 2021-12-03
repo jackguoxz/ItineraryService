@@ -57,7 +57,7 @@ public class ItineraryController {
         if(pathService.checkCityId(id,itineraryDto))
         {
             List<String> result=new ArrayList<>();
-            result.add("Invalid Original City Id");
+            result.add("Invalid Departure City Id");
             return  ResponseEntity.ok(result);
         };
         ResponseEntity<List<String>> result=ResponseEntity.ok(pathService.listItinerary(id,itineraryDto));
@@ -77,7 +77,7 @@ public class ItineraryController {
         if(pathService.checkCityId(id,itineraryDto))
         {
             List<String> result=new ArrayList<>();
-            result.add("Invalid Original City Id");
+            result.add("Invalid Departure City Id");
             return  ResponseEntity.ok(result);
         };
         List<String> itineraryListByConnection=pathService.getShortestItineraryByConnection(id,itineraryDto);
@@ -97,7 +97,7 @@ public class ItineraryController {
         if(pathService.checkCityId(id,itineraryDto))
         {
             List<String> result=new ArrayList<>();
-            result.add("Invalid Original City Id");
+            result.add("Invalid Departure City Id");
             return  ResponseEntity.ok(result);
         };
         List<String> itineraryListByConnection=pathService.getShortestItineraryByTime(id,itineraryDto);
@@ -117,7 +117,7 @@ public class ItineraryController {
         List<String> result=new ArrayList<>();
         if(pathService.checkCityId(id,itineraryDto))
         {
-            result.add("Invalid Original City Id");
+            result.add("Invalid Departure City Id");
             return  ResponseEntity.ok(result);
         };
         String urlGetItineraryByTime ="http://"+ serviceHost +"/itinerary/getitinerarybytime?departurecity={departurecity}&arrivalcity={arrivalcity}";

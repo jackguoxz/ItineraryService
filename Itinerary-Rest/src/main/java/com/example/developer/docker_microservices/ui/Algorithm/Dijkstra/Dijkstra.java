@@ -16,9 +16,7 @@ public class Dijkstra {
     private static DijkstraAlgorithm dijkstraByTime;
     private static DijkstraAlgorithm dijkstraByConnection;
 
-
     public Dijkstra(List<ItineraryDto> itineraryDtoList) {
-
         List<ItineraryDto> itineraryDto=itineraryDtoList;
         edgesByTime=buildEdgesByTime(itineraryDto);
         edgesByConnection=buildEdgesByConnection(itineraryDto);
@@ -27,7 +25,6 @@ public class Dijkstra {
         graphByConnection = new Graph(nodesByConnection, edgesByConnection);
         dijkstraByConnection = new DijkstraAlgorithm(graphByConnection);
     }
-
 
     public static List<Edge> buildEdgesByTime(List<ItineraryDto> list)
     {
@@ -124,6 +121,7 @@ public class Dijkstra {
         }
         return  result;
     }
+
     private static void addLaneByTime(String laneId, String sourceLocNo, String destLocNo,
                          int duration) {
         Vertex v1=new Vertex(sourceLocNo,sourceLocNo);

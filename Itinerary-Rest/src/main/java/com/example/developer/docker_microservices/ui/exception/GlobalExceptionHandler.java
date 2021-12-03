@@ -34,6 +34,7 @@ public class GlobalExceptionHandler
     @ResponseBody
     @ExceptionHandler(PermissionException.class)
     public String invalidParameterException(PermissionException ex) {
+        log.error("This is a BAD Permission", ex);
         return "This is a BAD Permission";
     }
 }

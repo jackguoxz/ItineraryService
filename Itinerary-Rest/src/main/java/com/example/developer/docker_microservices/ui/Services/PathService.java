@@ -93,7 +93,6 @@ public class PathService implements PathServiceInterface {
 
     }
 
-
     public  List<String> getShortestItineraryByTime(String departureCity,String url,List<ItineraryDto> itineraryDto)
     {
         Set<String> arrivalCity=getDestinationCityList(itineraryDto);
@@ -120,7 +119,6 @@ public class PathService implements PathServiceInterface {
         }
         return result;
     }
-
 
     public  String getShortestItineraryByTime(String departureCity,String arrivalCity,String url)
     {
