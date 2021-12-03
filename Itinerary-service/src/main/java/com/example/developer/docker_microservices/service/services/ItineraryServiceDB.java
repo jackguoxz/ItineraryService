@@ -74,7 +74,6 @@ public class ItineraryServiceDB implements ItineraryService {
         return originalCityIdList;
     }
 
-    //@Override
     public static List<ItineraryDto> listItinerary() {
         return itineraryDAO
                 .findAll()
