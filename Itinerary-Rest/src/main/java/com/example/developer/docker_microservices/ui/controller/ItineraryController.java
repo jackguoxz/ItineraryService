@@ -8,21 +8,14 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.expression.Maps;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Auth
 @Controller
@@ -34,7 +27,7 @@ public class ItineraryController {
     private final PathService pathService;
 
 
-    public ItineraryController(RestTemplate restTemplate, @Value("${service.host}") String serviceHost,PathService pathService) {
+    public ItineraryController(RestTemplate restTemplate, @Value("${service.host}") String serviceHost, PathService pathService) {
         this.restTemplate = restTemplate;
         this.serviceHost = serviceHost;
         this.pathService=pathService;

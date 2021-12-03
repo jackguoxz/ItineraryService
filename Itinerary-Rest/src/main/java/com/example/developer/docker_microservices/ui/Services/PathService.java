@@ -15,7 +15,7 @@ import java.util.*;
 
 @Auth
 @Service @Slf4j
-public class PathService implements PathServiceInterface {
+public class PathService implements PathInterface {
     @Resource
     private RestTemplate restTemplate;
 
