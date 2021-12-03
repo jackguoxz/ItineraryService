@@ -3,7 +3,9 @@ package com.example.developer.docker_microservices.ui.Algorithm.Dijkstra;
 import java.util.*;
 
 import com.example.developer.docker_microservices.ui.dto.ItineraryDto;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Dijkstra {
     private static List<Vertex> nodesByTime;
     private static List<Edge> edgesByTime;
@@ -88,7 +90,7 @@ public class Dijkstra {
                 }
             }catch (Exception e)
             {
-                System.out.println(e.toString());
+                log.error(e.toString());
             }
 
         }
@@ -116,7 +118,7 @@ public class Dijkstra {
                 }
             }catch (Exception e)
             {
-                System.out.println(e.toString());
+                log.error(e.toString());
             }
 
         }

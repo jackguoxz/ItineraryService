@@ -3,19 +3,18 @@ package com.example.developer.docker_microservices.ui.Services;
 import com.example.developer.docker_microservices.ui.Algorithm.Dijkstra.Dijkstra;
 import com.example.developer.docker_microservices.ui.auth.Auth;
 import com.example.developer.docker_microservices.ui.dto.ItineraryDto;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Resource;
 import java.util.*;
 
 @Auth
-@Service
+@Service @Slf4j
 public class PathService implements PathServiceInterface {
     @Resource
     private RestTemplate restTemplate;
@@ -105,7 +104,7 @@ public class PathService implements PathServiceInterface {
             }
         }catch (Exception e)
         {
-            System.out.print(e.toString());
+            log.error(e.toString());
         }
 
         return result;

@@ -5,13 +5,10 @@ import com.example.developer.docker_microservices.service.services.ItineraryServ
 import com.example.developer.docker_microservices.service.services.ItineraryServiceDB;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-
-import javax.servlet.http.HttpServletRequest;
-import java.net.CacheRequest;
 import java.util.*;
+import lombok.extern.slf4j.Slf4j;
 
-@RestController
+@RestController @Slf4j
 @RequestMapping("/itinerary")
 @Api(value = "Itinerary Controller", description = "Controllers in Itinerary Service")
 public class ItineraryController {
@@ -35,7 +32,7 @@ public class ItineraryController {
             result=itineraryService.getShortestItineraryByConnection(departureCityId,arrivalCityId);
         } catch(Exception e)
         {
-            System.out.println(e.toString());
+            log.error(e.toString());
         }
 
         return result;
@@ -49,7 +46,7 @@ public class ItineraryController {
              result = itineraryService.getShortestItineraryByTime(departureCityId, arrivalCityId);
         }catch (Exception e)
         {
-            System.out.println(e.toString());
+            log.error(e.toString());
         }
         return result;
     }
