@@ -93,8 +93,8 @@ public class ItineraryController {
             result.add("Invalid Departure City Id");
             return  ResponseEntity.ok(result);
         };
-        List<String> itineraryListByConnection=pathService.getShortestItineraryByTime(id,itineraryDto);
-        ResponseEntity<List<String>> result=ResponseEntity.ok(itineraryListByConnection);
+        List<String> itineraryListByTime=pathService.getShortestItineraryByTime(id,itineraryDto);
+        ResponseEntity<List<String>> result=ResponseEntity.ok(itineraryListByTime);
         return  result;
     }
 
