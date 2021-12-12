@@ -97,38 +97,4 @@ public class ItineraryController {
         ResponseEntity<List<String>> result=ResponseEntity.ok(itineraryListByTime);
         return  result;
     }
-
-    @ApiOperation(value="Get Shortest itinerary by combination of least Time and least number of Connection")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="id",value="cityId",required=true,paramType="form"),
-    })
-    @ResponseBody
-    @GetMapping("/itinerary/getshortestitinerary/{id}")
-    public ResponseEntity<List<String>> getshortestitineraryTest(@PathVariable String id){
-        String urlGetDTO ="http://"+ serviceHost +"/itinerary/getitinerarydto";
-        List<ItineraryDto> itineraryDto = pathService.getItineraryDto(urlGetDTO);
-        List<String> result=new ArrayList<>();
-        if(pathService.checkCityId(id,itineraryDto))
-        {
-            result.add("Invalid Departure City Id");
-            return  ResponseEntity.ok(result);
-        };
-        String urlGetItineraryByTime ="http://"+ serviceHost +"/itinerary/getitinerarybytime?departurecity={departurecity}&arrivalcity={arrivalcity}";
-        List<String> shortestItineraryByTime =pathService.getShortestItineraryByTime(id,urlGetItineraryByTime,itineraryDto);
-        String urlGetItineraryByConnection ="http://"+ serviceHost +"/itinerary/getitinerarybyconnection?departurecity={departurecity}&arrivalcity={arrivalcity}";
-        List<String> shortestItineraryByConnection =pathService.getShortestItineraryByConnection(id,urlGetItineraryByConnection,itineraryDto);
-        result.add("Time");
-        for (int i = 0; i < shortestItineraryByTime.size(); i++) {
-            if(shortestItineraryByTime.get(i)!=null) {
-                result.add(shortestItineraryByTime.get(i));
-            }
-        }
-        result.add("Connection");
-        for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
-            if(shortestItineraryByConnection.get(i)!=null) {
-                result.add(shortestItineraryByConnection.get(i));
-            }
-        }
-        return ResponseEntity.ok(result);
-    }
 }

@@ -23,32 +23,4 @@ public class ItineraryController {
     public List<ItineraryDto> getItineraryDto(){
         return ItineraryServiceDB.listItinerary();
     }
-
-    @RequestMapping(value = "/getitinerarybyconnection", method = RequestMethod.GET)
-    @ResponseBody
-    public String getItineraryByConnection(@RequestParam(value="departurecity")String departureCityId,@RequestParam(value="arrivalcity")String arrivalCityId){
-        String result= "";
-        try {
-            result=itineraryService.getShortestItineraryByConnection(departureCityId,arrivalCityId);
-        } catch(Exception e)
-        {
-            log.error(e.toString());
-        }
-
-        return result;
-    }
-
-    @RequestMapping(value = "/getitinerarybytime", method = RequestMethod.GET)
-    @ResponseBody
-    public String getItineraryByTime(@RequestParam(value="departurecity")String departureCityId,@RequestParam(value="arrivalcity")String arrivalCityId){
-        String result= "";
-        try {
-             result = itineraryService.getShortestItineraryByTime(departureCityId, arrivalCityId);
-        }catch (Exception e)
-        {
-            log.error(e.toString());
-        }
-        return result;
-    }
-
 }

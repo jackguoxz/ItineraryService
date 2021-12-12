@@ -33,16 +33,6 @@ public class PathService implements PathInterface {
         return dijkstra.convertByConnection(originalCityId);
     }
 
-    public Set<String> getDestinationCityList(List<ItineraryDto> itineraryDto)
-    {
-        Set<String> destinationCityList=new HashSet<>();
-        for (int i = 0; i < itineraryDto.size(); i++) {
-            ItineraryDto dto = itineraryDto.get(i);
-            String destinationCityId=dto.getDestinationCityId();
-            destinationCityList.add(destinationCityId);
-        }
-        return destinationCityList;
-    }
 
     public Set<String> getOriginalCityIdList(List<ItineraryDto> itineraryDto)
     {
@@ -76,73 +66,6 @@ public class PathService implements PathInterface {
 
     }
 
-    public  List<String> getShortestItinerary(String id,String url,List<ItineraryDto> itineraryDto)
-    {
-        List<String> result=new ArrayList<>();
-        List<String> shortestItineraryByTime=getShortestItineraryByTime(id,url,itineraryDto);
-        List<String> shortestItineraryByConnection=getShortestItineraryByTime(id,url,itineraryDto);
-        result.add("Time");
-        for (int i = 0; i < shortestItineraryByTime.size(); i++) {
-            result.add(shortestItineraryByTime.get(i));
-        }
-        result.add("Connection");
-        for (int i = 0; i < shortestItineraryByConnection.size(); i++) {
-            result.add(shortestItineraryByConnection.get(i));
-        }
-        return result;
-
-    }
-
-    public  List<String> getShortestItineraryByTime(String departureCity,String url,List<ItineraryDto> itineraryDto)
-    {
-        Set<String> arrivalCity=getDestinationCityList(itineraryDto);
-        List<String> result =new ArrayList<>();
-        try {
-            for (String id : arrivalCity) {
-                result.add(getShortestItineraryByTime(departureCity,id, url));
-            }
-        }catch (Exception e)
-        {
-            log.error(e.toString());
-        }
-
-        return result;
-    }
-
-    public  List<String> getShortestItineraryByConnection(String departureCity,String url,List<ItineraryDto> itineraryDto)
-    {
-        Set<String> arrivalCity=getDestinationCityList(itineraryDto);
-        List<String> result =new ArrayList<>();
-        for(String id: arrivalCity)
-        {
-            result.add(getShortestItineraryByConnection(departureCity,id,url));
-        }
-        return result;
-    }
-
-    public  String getShortestItineraryByTime(String departureCity,String arrivalCity,String url)
-    {
-        Map<String,String> map = new HashMap();
-        map.put("departurecity",departureCity);
-        map.put("arrivalcity",arrivalCity);
-        ResponseEntity<String> result= restTemplate
-                .exchange(url, HttpMethod.GET, null,
-                        new ParameterizedTypeReference<String>() {},map);
-        return result.getBody();
-
-    }
-
-    public  String getShortestItineraryByConnection(String departureCity,String arrivalCity,String url)
-    {
-        Map<String,String> map = new HashMap();
-        map.put("departurecity",departureCity);
-        map.put("arrivalcity",arrivalCity);
-        ResponseEntity<String> result= restTemplate
-                .exchange(url, HttpMethod.GET, null,
-                        new ParameterizedTypeReference<String>() {},map);
-        return result.getBody();
-
-    }
     public List<String> listItinerary(String originalCityId,List<ItineraryDto> itineraryDto)
     {
         List<String> result=new ArrayList<>();
