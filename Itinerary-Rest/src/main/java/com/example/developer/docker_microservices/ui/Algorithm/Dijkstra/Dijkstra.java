@@ -81,15 +81,9 @@ public class Dijkstra {
             Vertex dest=new Vertex(id,id);
             dijkstraByTime.execute(source);
             path = dijkstraByTime.getPath(dest);
-            try {
-                if(path!=null) {
-                    result.add(path.toString());
-                }
-            }catch (Exception e)
-            {
-                log.error(e.toString());
+            if(path!=null) {
+                result.add(path.toString());
             }
-
         }
         return  result;
     }
@@ -109,15 +103,9 @@ public class Dijkstra {
             Vertex dest=new Vertex(id,id);
             dijkstraByConnection.execute(source);
             path = dijkstraByConnection.getPath(dest);
-            try {
-                if(path!=null) {
-                    result.add(path.toString());
-                }
-            }catch (Exception e)
-            {
-                log.error(e.toString());
+            if(path!=null) {
+                result.add(path.toString());
             }
-
         }
         return  result;
     }
